@@ -63,7 +63,7 @@ public class BookManagerImpl implements BookManagerInterface {
 
     @Override
     public Collection<Book> listBooksByAuthor(String author) {
-        Set<Book> results = new HashSet<Book>();;
+        Set<Book> results = new HashSet<Book>();
         for(Book book : listBooks()){
             if (book.getAuthor().equals(author))
                 results.add(book);
@@ -73,7 +73,7 @@ public class BookManagerImpl implements BookManagerInterface {
 
     @Override
     public Collection<Book> listBooksIfAvailable() {
-        Set<Book> results = new HashSet<Book>();;
+        Set<Book> results = new HashSet<Book>();
         for(Book book : listBooks()){
             if (book.getAvailable() != 0)
                 results.add(book);

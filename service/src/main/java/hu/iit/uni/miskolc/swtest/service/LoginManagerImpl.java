@@ -13,28 +13,15 @@ public class LoginManagerImpl implements LoginManagerInterface {
     }
 
     @Override
-    public boolean authUsername(String username) {
-        try {
-            if (loginDao.searchUsername(username)){
-                return true;
-            }else {
-                return false;
-            }
+    public boolean authenticate(String username, String password) {
+        try{
+            loginDao.searchUsername(username);
+            loginDao.readPassword(password);
+            return true;
         }catch (UsernameEntryNotFoundException e){
+            return false;
+        }catch (PasswordEntryNotFoundException ex){
             return false;
         }
     }
-
-    @Override
-    public boolean authPassword(String password) {
-        try {
-            if (loginDao.readPassword(password)) {
-                return true;
-            }else {
-                return false;
-            }
-            }catch (PasswordEntryNotFoundException e){
-                return false;
-            }
-        }
-    }
+}
