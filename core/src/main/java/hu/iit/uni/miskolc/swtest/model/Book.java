@@ -68,11 +68,7 @@ public class Book {
                 '}';
     }
 
-    public Boolean validate(){                          //ha esetleg kéne valamihez
-        if (getAvailable() < 0 || getQuantity() < 0){
-            return false;
-        }else {
-            return true;
-        }
+    public Boolean validate(){
+        return getAvailable() >= 0 && getQuantity() >= 0;
     }
 }
