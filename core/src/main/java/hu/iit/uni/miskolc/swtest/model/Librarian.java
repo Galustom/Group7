@@ -1,35 +1,24 @@
 package hu.iit.uni.miskolc.swtest.model;
 
-public class Librarian {
+import java.util.Collection;
 
-    private int id;
-    private String username;
-    private String password;
+public class Librarian extends User {
 
-    public Librarian(int id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    private Collection<Book> requests;
+
+    public Librarian(int id, String username, String password, Collection<Book> requests) {
+        super(id, username, password);
+        this.requests = requests;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
+    public Collection<Book> getRequests() {
+        return requests;
     }
 
     @Override
     public String toString() {
         return "Librarian{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                "requests=" + requests +
                 '}';
     }
 }

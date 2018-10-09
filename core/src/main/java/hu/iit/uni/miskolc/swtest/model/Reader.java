@@ -2,30 +2,13 @@ package hu.iit.uni.miskolc.swtest.model;
 
 import java.util.Collection;
 
-public class Reader {
+public class Reader extends User {
 
-    private int id;
-    private String username;
-    private String password;
     private Collection<Book> borrowings;
 
     public Reader(int id, String username, String password, Collection<Book> borrowings) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+        super(id, username, password);
         this.borrowings = borrowings;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public Collection<Book> getBorrowings() {
@@ -35,10 +18,7 @@ public class Reader {
     @Override
     public String toString() {
         return "Reader{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", borrowings=" + borrowings +
+                "borrowings=" + borrowings +
                 '}';
     }
 }
