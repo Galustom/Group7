@@ -1,5 +1,6 @@
-package hu.iit.uni.miskolc.swtest.dao;
+package hu.iit.uni.miskolc.swtest;
 
+import hu.iit.uni.miskolc.swtest.dao.BookDaoInterface;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class BookDaoImpl implements BookDaoInterface{
+public class BookDaoImpl implements BookDaoInterface {
 
     @Override
     public void createBook(Book book) throws BookEntryAlreadyAddedException {
