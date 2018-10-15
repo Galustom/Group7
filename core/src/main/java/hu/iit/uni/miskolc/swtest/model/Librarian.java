@@ -4,14 +4,14 @@ import java.util.Collection;
 
 public class Librarian extends User {
 
-    private Collection<Book> requests;
+    private Collection<Request> requests;
 
-    public Librarian(int id, String username, String password, Collection<Book> requests) {
+    public Librarian(int id, String username, String password, Collection<Request> requests) {
         super(id, username, password);
         this.requests = requests;
     }
 
-    public Collection<Book> getRequests() {
+    public Collection<Request> getRequests() {
         return requests;
     }
 
