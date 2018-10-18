@@ -144,8 +144,7 @@ public class BookDaoImpl implements BookDaoInterface {
     }
 
     private static List<String[]> ReadAllBook() {
-        List<String[]> Books = null;
-        String id, name, genre, author, publisher, isbn, quantity, available;
+        List<String[]> Books = new ArrayList<>();
         Document dom;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
