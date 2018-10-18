@@ -84,12 +84,63 @@ public class BookDaoImpl implements BookDaoInterface {
 
     @Override
     public void updateBook(Book book) throws BookEntryNotFoundException {
+        List<String[]> StringBooks = ReadAllBook();
+        List<Book> Books = new ArrayList<>();
+        for (int i=0; i<StringBooks.size(); i++){
+            Books.add(new Book(
+                    Integer.parseInt(StringBooks.get(i)[0]),
+                    StringBooks.get(i)[1],
+                    StringBooks.get(i)[2],
+                    StringBooks.get(i)[3],
+                    StringBooks.get(i)[4],
+                    StringBooks.get(i)[5],
+                    Integer.parseInt(StringBooks.get(i)[6]),
+                    Integer.parseInt(StringBooks.get(i)[7])
+            ));
+        }
 
+        if(!Books.contains(book)){
+            throw new BookEntryNotFoundException();
+        }
+        else{
+            int indexOfInput = Books.indexOf(book);
+
+            StringBooks.get(indexOfInput)[0]=Integer.toString(book.getId());
+            StringBooks.get(indexOfInput)[1]=book.getName();
+            StringBooks.get(indexOfInput)[2]=book.getGenre();
+            StringBooks.get(indexOfInput)[3]=book.getAuthor();
+            StringBooks.get(indexOfInput)[4]=book.getPublisher();
+            StringBooks.get(indexOfInput)[5]=book.getIsbn();
+            StringBooks.get(indexOfInput)[6]=Integer.toString(book.getQuantity());
+            StringBooks.get(indexOfInput)[7]=Integer.toString(book.getAvailable());
+
+            WriteAllBook(StringBooks);
+        }
     }
 
     @Override
     public void deleteBook(Book book) throws BookEntryNotFoundException {
+        List<String[]> StringBooks = ReadAllBook();
+        List<Book> Books = new ArrayList<>();
+        for (int i=0; i<StringBooks.size(); i++){
+            Books.add(new Book(
+                    Integer.parseInt(StringBooks.get(i)[0]),
+                    StringBooks.get(i)[1],
+                    StringBooks.get(i)[2],
+                    StringBooks.get(i)[3],
+                    StringBooks.get(i)[4],
+                    StringBooks.get(i)[5],
+                    Integer.parseInt(StringBooks.get(i)[6]),
+                    Integer.parseInt(StringBooks.get(i)[7])
+            ));
+        }
 
+        if(!Books.contains(book)){
+            throw new BookEntryNotFoundException();
+        }
+        else {
+            StringBooks.remove(Books.indexOf(book));
+        }
     }
 
     private static List<String[]> ReadAllBook() {
