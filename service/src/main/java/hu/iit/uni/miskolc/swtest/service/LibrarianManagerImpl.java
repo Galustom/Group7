@@ -4,7 +4,7 @@ import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookDoesNotExistException;
 
-
+import hu.iit.uni.miskolc.swtest.service.LibrarianManagerInterface;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +27,7 @@ public class LibrarianManagerImpl implements LibrarianManagerInterface{
         }
     }
 
-    public  updateBook updateBook(Book book) throws BookDoesNotExistException{
+    public updateBook updateBook(Book book) throws BookDoesNotExistException{
         try{
             librarianManagerDAO.updateBook(book);
         }
