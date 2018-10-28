@@ -10,7 +10,6 @@ public class Request {
         this.requestedBooks = requestedBooks;
     }
 
-
     public Collection<Book> getRequestedBooks() {
         return requestedBooks;
     }

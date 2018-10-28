@@ -143,7 +143,7 @@ public class BookDaoImpl implements BookDaoInterface {
         }
     }
 
-    private static List<String[]> ReadAllBook() {
+    public static List<String[]> ReadAllBook() {
         List<String[]> Books = new ArrayList<>();
         Document dom;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
