@@ -6,7 +6,7 @@ import hu.iit.uni.miskolc.swtest.model.Book;
 
 import java.util.Collection;
 
-public interface BookDaoInterface {
+public interface BookDao {
 
     void createBook(Book book) throws BookEntryAlreadyAddedException;
     Collection<Book> readBooks();

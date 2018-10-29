@@ -1,10 +1,11 @@
 package hu.iit.uni.miskolc.swtest.service;
 
-import hu.iit.uni.miskolc.swtest.dao.BookDaoInterface;
+import hu.iit.uni.miskolc.swtest.dao.BookDao;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.Reader;
+import hu.iit.uni.miskolc.swtest.model.Request;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookDoesNotExistException;
 
@@ -12,15 +13,21 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LibrarianManagerImpl implements LibrarianManagerInterface{
+public class LibrarianManagerImpl implements LibrarianManager {
 
-    private BookDaoInterface librarianManagerDAO;
+    private BookDao librarianManagerDAO;
 
-    public LibrarianManagerImpl (BookDaoInterface librarianManagerDAO) {this.librarianManagerDAO = librarianManagerDAO;}
+    public LibrarianManagerImpl (BookDao librarianManagerDAO) {this.librarianManagerDAO = librarianManagerDAO;}
 
     @Override
     public Collection<Book> listBooks() {
         return librarianManagerDAO.readBooks();
+    }
+
+    //STILL NEED TO BE IMPLEMENTED
+    @Override
+    public Collection<Request> listReaderRequests(Reader reader) {
+        return null;
     }
 
     @Override
@@ -88,9 +95,11 @@ public class LibrarianManagerImpl implements LibrarianManagerInterface{
         return results;
     }
 
+    //NEED TO BE FIXED
     @Override
     public Collection<Book> listReaderBorrowings(Reader reader){
-        return reader.getBorrowings();
+        //return reader.getBorrowings();
+        return null;
     }
 
     //public Collection<Request> listReaderRequests(Reader reader) { }

@@ -6,7 +6,7 @@ import hu.iit.uni.miskolc.swtest.service.exceptions.BookDoesNotExistException;
 
 import java.util.Collection;
 
-public interface BookManagerInterface {
+public interface BookManager {
 
     void addBook(Book book) throws BookAlreadyAddedException;
     void updateBook(Book book) throws BookDoesNotExistException;

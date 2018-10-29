@@ -1,6 +1,6 @@
 package hu.iit.uni.miskolc.swtest;
 
-import hu.iit.uni.miskolc.swtest.dao.LoginDaoInterface;
+import hu.iit.uni.miskolc.swtest.dao.LoginDao;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.PasswordEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.UsernameEntryNotFoundException;
 import org.w3c.dom.Document;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginDaoImpl implements LoginDaoInterface {
+public class LoginDaoImpl implements LoginDao {
     @Override
     public boolean searchUsername(String username) throws UsernameEntryNotFoundException {
         List<String[]> StringUsers = ReadAllUser();

@@ -1,6 +1,6 @@
 package hu.iit.uni.miskolc.swtest.service;
 
-import hu.iit.uni.miskolc.swtest.dao.BookDaoInterface;
+import hu.iit.uni.miskolc.swtest.dao.BookDao;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
@@ -11,11 +11,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BookManagerImpl implements BookManagerInterface {
+public class BookManagerImpl implements BookManager {
 
-    private BookDaoInterface bookDao;
+    private BookDao bookDao;
 
-    public BookManagerImpl(BookDaoInterface bookDao) {
+    public BookManagerImpl(BookDao bookDao) {
         this.bookDao = bookDao;
     }
 

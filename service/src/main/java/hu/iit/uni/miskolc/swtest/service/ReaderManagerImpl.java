@@ -1,17 +1,16 @@
-<<<<<<< HEAD
 package hu.iit.uni.miskolc.swtest.service;
 
-import hu.iit.uni.miskolc.swtest.dao.ReaderDaoInterface;
+import hu.iit.uni.miskolc.swtest.dao.ReaderDao;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.Reader;
 
 import java.util.Collection;
 
-public class ReaderManagerImpl implements ReaderManagerInterface {
+public class ReaderManagerImpl implements ReaderManager {
 
-    ReaderDaoInterface readerDAO;
+    ReaderDao readerDAO;
 
-    public ReaderManagerImpl(ReaderDaoInterface readerDAO){
+    public ReaderManagerImpl(ReaderDao readerDAO){
         this.readerDAO = readerDAO;
     }
 
@@ -35,9 +34,3 @@ public class ReaderManagerImpl implements ReaderManagerInterface {
         return readerDAO.listBorrowings(reader);
     }
 }
-=======
-package hu.iit.uni.miskolc.swtest.service;
-
-public class ReaderManagerImpl {
-}
->>>>>>> Dao-and-file-handling-#7

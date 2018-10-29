@@ -1,14 +1,14 @@
 package hu.iit.uni.miskolc.swtest.service;
 
-import hu.iit.uni.miskolc.swtest.dao.LoginDaoInterface;
+import hu.iit.uni.miskolc.swtest.dao.LoginDao;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.PasswordEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.UsernameEntryNotFoundException;
 
-public class LoginManagerImpl implements LoginManagerInterface {
+public class LoginManagerImpl implements LoginManager {
 
-    LoginDaoInterface loginDao;
+    LoginDao loginDao;
 
-    public LoginManagerImpl(LoginDaoInterface loginDao) {
+    public LoginManagerImpl(LoginDao loginDao) {
         this.loginDao = loginDao;
     }
 
