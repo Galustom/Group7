@@ -2,9 +2,12 @@ package hu.iit.uni.miskolc.swtest.model;
 
 import java.util.Collection;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.util.Date;
 >>>>>>> Dao-and-file-handling-#7
+=======
+>>>>>>> origin/Implementation-of-LibrarianManagerInterface-#12
 
 public class Request {
 
@@ -15,9 +18,13 @@ public class Request {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> Dao-and-file-handling-#7
+=======
+
+>>>>>>> origin/Implementation-of-LibrarianManagerInterface-#12
     public Collection<Book> getRequestedBooks() {
         return requestedBooks;
     }
@@ -32,6 +39,7 @@ public class Request {
                 ", requestedBooks=" + requestedBooks +
                 '}';
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -61,4 +69,6 @@ public class Request {
         requestBook.approvalLibrarian = getCurrentLibrarian(); //Need to implement getCurrentLibrarian()
     }*/
 >>>>>>> Dao-and-file-handling-#7
+=======
+>>>>>>> origin/Implementation-of-LibrarianManagerInterface-#12
 }
