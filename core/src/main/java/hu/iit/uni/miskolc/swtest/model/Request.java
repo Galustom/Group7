@@ -1,6 +1,10 @@
 package hu.iit.uni.miskolc.swtest.model;
 
 import java.util.Collection;
+<<<<<<< HEAD
+=======
+import java.util.Date;
+>>>>>>> Dao-and-file-handling-#7
 
 public class Request {
 
@@ -10,7 +14,10 @@ public class Request {
         this.requestedBooks = requestedBooks;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Dao-and-file-handling-#7
     public Collection<Book> getRequestedBooks() {
         return requestedBooks;
     }
@@ -25,4 +32,33 @@ public class Request {
                 ", requestedBooks=" + requestedBooks +
                 '}';
     }
+<<<<<<< HEAD
+=======
+
+    private int id;
+
+    private int bookId;
+
+    private int readerId;
+
+    private Date requestDate;
+
+    private boolean approve;
+
+    private int approvalLibrarianId;
+
+    private Date deadline;
+
+    private boolean returned;
+    
+    private boolean active;
+
+    /*public void setRequest(Book book, Reader reader){};
+
+    public void approve (int requestId, Date date){
+        Request requestBook = getRequest(readerId); //Need to implement getRequest()
+        requestBook.approve = true;
+        requestBook.approvalLibrarian = getCurrentLibrarian(); //Need to implement getCurrentLibrarian()
+    }*/
+>>>>>>> Dao-and-file-handling-#7
 }

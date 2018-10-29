@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package hu.iit.uni.miskolc.swtest.service;
 
 import hu.iit.uni.miskolc.swtest.dao.ReaderDaoInterface;
@@ -34,3 +35,9 @@ public class ReaderManagerImpl implements ReaderManagerInterface {
         return readerDAO.listBorrowings(reader);
     }
 }
+=======
+package hu.iit.uni.miskolc.swtest.service;
+
+public class ReaderManagerImpl {
+}
+>>>>>>> Dao-and-file-handling-#7
