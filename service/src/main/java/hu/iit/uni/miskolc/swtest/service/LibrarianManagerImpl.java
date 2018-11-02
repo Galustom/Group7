@@ -102,7 +102,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
         return null;
     }
 
-    //public Collection<Request> listReaderRequests(Reader reader) { }
+    //public Collection<RequestManager> listReaderRequests(Reader reader) { }
     public  void fulfillRequest(Reader reader){
         // TODO: implement
     }

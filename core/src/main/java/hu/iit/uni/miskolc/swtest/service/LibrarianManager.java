@@ -24,7 +24,7 @@ public interface LibrarianManager {
     Collection<Book> listBooksIfAvailable();
 
     Collection<Book> listReaderBorrowings(Reader reader);
-    //Collection<Request> listReaderRequests(Reader reader);
+    //Collection<RequestManager> listReaderRequests(Reader reader);
 
     void fulfillRequest(Reader reader);
 }
