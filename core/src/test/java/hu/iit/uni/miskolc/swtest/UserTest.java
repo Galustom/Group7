@@ -1,0 +1,60 @@
+package hu.iit.uni.miskolc.swtest;
+
+import hu.iit.uni.miskolc.swtest.model.User;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+
+public class UserTest {
+
+    User user;
+    int id = 4556;
+    String username = "alamuszinyuszi";
+    String password = "password";
+
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
+
+    @Before
+    public void setUp() {
+        this.user = new User(this.id,this.username,this.password);
+    }
+
+    @Test
+    public void testConstructorLegalValues() {
+        try {
+            new User(this.id,this.username,this.password);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public  void testConstructorIllegalValues() {
+        exceptionRule.expect(IllegalArgumentException.class);
+        new User(this.id,null,null);
+        exceptionRule.expect(IllegalArgumentException.class);
+        new User(this.id,"",null);
+        exceptionRule.expect(IllegalArgumentException.class);
+        new User(this.id,null,"");
+    }
+
+    @Test
+    public void testGetID() {
+        assertEquals(this.id, this.user.getId());
+    }
+
+    @Test
+    public void testGetUsername() {
+        assertEquals(this.username, this.user.getUsername());
+    }
+
+    @Test
+    public void testGetPassword() {
+        assertEquals(this.password,this.user.getPassword());
+    }
+}

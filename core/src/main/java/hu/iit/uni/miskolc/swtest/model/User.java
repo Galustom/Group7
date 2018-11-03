@@ -1,6 +1,6 @@
 package hu.iit.uni.miskolc.swtest.model;
 
-public abstract class User {
+public class User {
 
     private int id;
     private String username;

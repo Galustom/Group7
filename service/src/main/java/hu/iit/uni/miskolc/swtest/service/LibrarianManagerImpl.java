@@ -111,7 +111,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
 
     @Override
     public void setRequest(Book book, Reader reader) {
-
+        // TODO: implement
     }
 
     @Override
@@ -123,6 +123,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
 
     @Override
     public void setRequestedBooks(Collection<Book> requestedBooks) {
+        // TODO: implement
     }
 }
 
