@@ -7,24 +7,23 @@ import hu.iit.uni.miskolc.swtest.service.exceptions.BookAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookDoesNotExistException;
 
 import java.util.Collection;
+import java.util.Date;
 
 public interface LibrarianManager {
 
-    Collection<Book> listBooks();  //example here, you can just use the
-
+    Collection<Book> listBooks();
     Collection<Request> listReaderRequests(Reader reader);
-
-    //already written method(listBooks()) from BookManager
-
     void addBookToLibrary(Book book) throws BookAlreadyAddedException;
     void updateBook(Book book) throws BookDoesNotExistException;
     void deleteBook(Book book) throws BookDoesNotExistException;
     Collection<Book> listBooksByGenre(String genre);
     Collection<Book> listBooksByAuthor(String author);
     Collection<Book> listBooksIfAvailable();
-
     Collection<Book> listReaderBorrowings(Reader reader);
-    //Collection<RequestManager> listReaderRequests(Reader reader);
 
+    //Collection<RequestManager> listReaderRequests(Reader reader);
     void fulfillRequest(Reader reader);
+    public void setRequest(Book book, Reader reader);
+    public void approve (int requestId, Date date);
+    public void setRequestedBooks(Collection<Book> requestedBooks);
 }

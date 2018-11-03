@@ -1,6 +1,7 @@
 package hu.iit.uni.miskolc.swtest.service;
 
 import hu.iit.uni.miskolc.swtest.dao.BookDao;
+import hu.iit.uni.miskolc.swtest.dao.RequestDao;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
@@ -10,12 +11,14 @@ import hu.iit.uni.miskolc.swtest.service.exceptions.BookAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookDoesNotExistException;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 public class LibrarianManagerImpl implements LibrarianManager {
 
     private BookDao librarianManagerDAO;
+    private RequestDao requestDao;
 
     public LibrarianManagerImpl (BookDao librarianManagerDAO) {this.librarianManagerDAO = librarianManagerDAO;}
 
@@ -24,10 +27,9 @@ public class LibrarianManagerImpl implements LibrarianManager {
         return librarianManagerDAO.readBooks();
     }
 
-    //STILL NEED TO BE IMPLEMENTED
     @Override
     public Collection<Request> listReaderRequests(Reader reader) {
-        return null;
+        return null; //TODO implement this
     }
 
     @Override
@@ -95,7 +97,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
         return results;
     }
 
-    //NEED TO BE FIXED
+    //TODO NEED TO BE FIXED
     @Override
     public Collection<Book> listReaderBorrowings(Reader reader){
         //return reader.getBorrowings();
@@ -105,6 +107,22 @@ public class LibrarianManagerImpl implements LibrarianManager {
     //public Collection<RequestManager> listReaderRequests(Reader reader) { }
     public  void fulfillRequest(Reader reader){
         // TODO: implement
+    }
+
+    @Override
+    public void setRequest(Book book, Reader reader) {
+
+    }
+
+    @Override
+    public void approve(int requestId, Date date) {
+        Request requestBook = requestDao.GetRequest(requestId);
+        requestBook.setApprove(true);
+        requestBook.setApprovalLibrarianId(1); //Need to implement getCurrentLibrarian()
+    }
+
+    @Override
+    public void setRequestedBooks(Collection<Book> requestedBooks) {
     }
 }
 
