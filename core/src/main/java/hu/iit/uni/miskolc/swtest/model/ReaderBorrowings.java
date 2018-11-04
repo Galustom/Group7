@@ -2,11 +2,11 @@ package hu.iit.uni.miskolc.swtest.model;
 
 import java.util.Collection;
 
-public class ReaderBorrowing {
+public class ReaderBorrowings {
 
     private Collection<Book> borrowedBooks;
 
-    public ReaderBorrowing(Collection<Book> borrowedBooks) {
+    public ReaderBorrowings(Collection<Book> borrowedBooks) {
         this.borrowedBooks = borrowedBooks;
     }
 
@@ -20,7 +20,7 @@ public class ReaderBorrowing {
 
     @Override
     public String toString() {
-        return "ReaderBorrowing{" +
+        return "ReaderBorrowings{" +
                 "borrowedBooks=" + borrowedBooks +
                 '}';
     }

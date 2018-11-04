@@ -2,14 +2,14 @@ package hu.iit.uni.miskolc.swtest.model;
 
 public class Reader extends User {
 
-    private ReaderBorrowing borrowings;
+    private ReaderBorrowings borrowings;
 
-    public Reader(int id, String username, String password, ReaderBorrowing borrowings) {
+    public Reader(int id, String username, String password, ReaderBorrowings borrowings) {
         super(id, username, password);
         this.borrowings = borrowings;
     }
 
-    public ReaderBorrowing getBorrowings() {
+    public ReaderBorrowings getBorrowings() {
         return borrowings;
     }
 
