@@ -15,11 +15,11 @@ import static org.junit.Assert.fail;
 
 public class LibraryTest {
 
-    Library library;
-    int id = 4556;
-    String name = "libsilibrary";
-    Book book;
-    Collection<Book> booklist;
+    private Library library;
+    private int id = 4556;
+    private String name = "libsilibrary";
+    private Book book;
+    private Collection<Book> booklist;
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();

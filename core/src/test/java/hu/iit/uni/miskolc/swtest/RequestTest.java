@@ -13,16 +13,16 @@ import static org.junit.Assert.fail;
 
 public class RequestTest {
 
-    Request request;
-    int id = 166;
-    int bookId = 65;
-    int readerId = 345;
-    Calendar requestDate = Calendar.getInstance();
-    boolean approve = false;
-    int approvalLibrarianId = 661;
-    Calendar deadline = Calendar.getInstance();
-    boolean returned = false;
-    boolean active = true;
+    private Request request;
+    private int id = 166;
+    private int bookId = 65;
+    private int readerId = 345;
+    private Calendar requestDate = Calendar.getInstance();
+    private boolean approve = false;
+    private int approvalLibrarianId = 661;
+    private Calendar deadline = Calendar.getInstance();
+    private boolean returned = false;
+    private boolean active = true;
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();

@@ -16,12 +16,12 @@ import static org.junit.Assert.fail;
 
 public class LibrarianTest {
 
-    Librarian librarian;
-    int id = 4556;
-    String username = "alamuszinyuszi";
-    String password = "password";
-    Request request;
-    Collection<Request> requests;
+    private Librarian librarian;
+    private int id = 4556;
+    private String username = "alamuszinyuszi";
+    private String password = "password";
+    private Request request;
+    private Collection<Request> requests;
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();

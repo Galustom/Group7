@@ -15,9 +15,9 @@ import static org.junit.Assert.fail;
 
 public class ReaderBorrowingsTest {
 
-    ReaderBorrowings readerBorrowings;
-    Book book;
-    Collection<Book> borrowedBooks;
+    private ReaderBorrowings readerBorrowings;
+    private Book book;
+    private Collection<Book> borrowedBooks;
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();

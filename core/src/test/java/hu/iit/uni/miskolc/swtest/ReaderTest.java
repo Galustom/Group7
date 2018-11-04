@@ -16,13 +16,13 @@ import static org.junit.Assert.fail;
 
 public class ReaderTest {
 
-    Reader reader;
-    int id = 4556;
-    String username = "alamuszinyuszi";
-    String password = "password";
-    Book book;
-    Collection<Book> booklist;
-    ReaderBorrowings readerBorrowings;
+    private Reader reader;
+    private int id = 4556;
+    private String username = "alamuszinyuszi";
+    private String password = "password";
+    private Book book;
+    private Collection<Book> booklist;
+    private ReaderBorrowings readerBorrowings;
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();

@@ -23,7 +23,7 @@ public interface LibrarianManager {
 
     //Collection<RequestManager> listReaderRequests(Reader reader);
     void fulfillRequest(Reader reader);
-    public void setRequest(Book book, Reader reader);
-    public void approve (int requestId, Date date);
-    public void setRequestedBooks(Collection<Book> requestedBooks);
+    void setRequest(Book book, Reader reader);
+    void approve (int requestId, Date date);
+    void setRequestedBooks(Collection<Book> requestedBooks);
 }

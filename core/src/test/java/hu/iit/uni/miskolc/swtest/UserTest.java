@@ -11,10 +11,10 @@ import static org.junit.Assert.fail;
 
 public class UserTest {
 
-    User user;
-    int id = 4556;
-    String username = "alamuszinyuszi";
-    String password = "password";
+    private User user;
+    private int id = 4556;
+    private String username = "alamuszinyuszi";
+    private String password = "password";
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();

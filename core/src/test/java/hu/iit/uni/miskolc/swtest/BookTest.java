@@ -11,16 +11,16 @@ import static org.junit.Assert.fail;
 
 public class BookTest {
 
-    Book book;
-    Book invalidBook;
-    int id = 6461;
-    String name = "JANI";
-    String genre = "HORROR";
-    String author = "PETIKE";
-    String publisher = "ZSIGA";
-    String isbn = "XDXDXDXD69";
-    int quantity = 55;
-    int available = 10;
+    private Book book;
+    private Book invalidBook;
+    private int id = 6461;
+    private String name = "JANI";
+    private String genre = "HORROR";
+    private String author = "PETIKE";
+    private String publisher = "ZSIGA";
+    private String isbn = "XDXDXDXD69";
+    private int quantity = 55;
+    private int available = 10;
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
