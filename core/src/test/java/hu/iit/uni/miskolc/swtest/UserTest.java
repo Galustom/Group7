@@ -35,12 +35,13 @@ public class UserTest {
 
     @Test
     public  void testConstructorIllegalValues() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        new User(this.id,null,null);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new User(this.id,"",null);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new User(this.id,null,"");
+        try {
+            new User(this.id,null,null);
+            new User(this.id,"",null);
+            new User(this.id,null,"");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

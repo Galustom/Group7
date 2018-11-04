@@ -46,12 +46,13 @@ public class LibrarianTest {
 
     @Test
     public  void testConstructorIllegalValues() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Librarian(this.id,null,null,null);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Librarian(this.id,"",null,null);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Librarian(this.id,null,"",null);
+        try {
+            new Librarian(this.id,null,null,null);
+            new Librarian(this.id,"",null,null);
+            new Librarian(this.id,null,"",null);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

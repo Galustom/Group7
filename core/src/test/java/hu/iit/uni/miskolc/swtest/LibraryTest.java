@@ -44,10 +44,12 @@ public class LibraryTest {
 
     @Test
     public  void testConstructorIllegalValues() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Library(this.id,null,null);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Library(this.id,"",null);
+        try {
+            new Library(this.id,null,null);
+            new Library(this.id,"",null);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

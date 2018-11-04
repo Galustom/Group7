@@ -40,7 +40,6 @@ public class ReaderTest {
     public void testConstructorWithLegalValues() {
         try {
             new Reader(this.id,this.username,this.password,this.readerBorrowings);
-
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -48,12 +47,13 @@ public class ReaderTest {
 
     @Test
     public void testConstructorWithIllegalValues() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Reader(this.id,null,null,null);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Reader(this.id,"",null,null);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Reader(this.id,null,"",null);
+        try {
+            new Reader(this.id,null,null,null);
+            new Reader(this.id,"",null,null);
+            new Reader(this.id,null,"",null);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

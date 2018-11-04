@@ -42,8 +42,11 @@ public class ReaderBorrowingsTest {
 
     @Test
     public void testConstructorWithIllegalValues() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        new ReaderBorrowings(null);
+        try {
+            new ReaderBorrowings(null);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -60,8 +63,12 @@ public class ReaderBorrowingsTest {
         assertEquals(borrowedBooks, this.readerBorrowings.getBorrowedBooks());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testsetBorrowedBooksWithNull () {
-        this.readerBorrowings.setBorrowedBooks(null);
+    @Test
+    public void testSetBorrowedBooksWithNull () {
+        try {
+            this.readerBorrowings.setBorrowedBooks(null);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 }

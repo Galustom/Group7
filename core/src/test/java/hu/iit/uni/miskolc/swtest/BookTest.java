@@ -44,18 +44,16 @@ public class BookTest {
 
     @Test
     public  void testConstructorIllegalValues() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Book(this.id,null,null,null,null,null,this.quantity,this.available);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Book(this.id,"",null,null,null,null,this.quantity,this.available);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Book(this.id,null,"",null,null,null,this.quantity,this.available);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Book(this.id,null,null,"",null,null,this.quantity,this.available);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Book(this.id,null,null,null,"",null,this.quantity,this.available);
-        exceptionRule.expect(IllegalArgumentException.class);
-        new Book(this.id,null,null,null,null,"",this.quantity,this.available);
+        try {
+            new Book(this.id, null, null, null, null, null, this.quantity, this.available);
+            new Book(this.id, "", null, null, null, null, this.quantity, this.available);
+            new Book(this.id, null, "", null, null, null, this.quantity, this.available);
+            new Book(this.id, null, null, "", null, null, this.quantity, this.available);
+            new Book(this.id, null, null, null, "", null, this.quantity, this.available);
+            new Book(this.id, null, null, null, null, "", this.quantity, this.available);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

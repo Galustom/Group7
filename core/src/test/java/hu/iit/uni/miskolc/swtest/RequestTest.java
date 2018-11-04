@@ -46,12 +46,13 @@ public class RequestTest {
 
     @Test
     public void testConstructorWithIllegalValues() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        request = new Request(this.id,this.bookId,this.readerId,null,this.approve,this.approvalLibrarianId,null,this.returned,this.active);
-        exceptionRule.expect(IllegalArgumentException.class);
-        request = new Request(this.id,this.bookId,this.readerId,null,this.approve,this.approvalLibrarianId,this.deadline.getTime(),this.returned,this.active);
-        exceptionRule.expect(IllegalArgumentException.class);
-        request = new Request(this.id,this.bookId,this.readerId,this.requestDate.getTime(),this.approve,this.approvalLibrarianId,null,this.returned,this.active);
+        try {
+            request = new Request(this.id,this.bookId,this.readerId,null,this.approve,this.approvalLibrarianId,null,this.returned,this.active);
+            request = new Request(this.id,this.bookId,this.readerId,null,this.approve,this.approvalLibrarianId,this.deadline.getTime(),this.returned,this.active);
+            request = new Request(this.id,this.bookId,this.readerId,this.requestDate.getTime(),this.approve,this.approvalLibrarianId,null,this.returned,this.active);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -92,18 +93,18 @@ public class RequestTest {
 
     @Test
     public void testGetRequestDate() {
-        assertEquals(requestDate,this.request.getRequestDate());
+        assertEquals(requestDate.getTime(),this.request.getRequestDate());
     }
 
     @Test
     public void testSetRequestDate() {
         Calendar RequestDate = Calendar.getInstance();
         RequestDate.set(2011, Calendar.DECEMBER, 14);
-        this.request.setRequestDate(requestDate.getTime());
-        assertEquals(RequestDate,this.request.getRequestDate());
+        this.request.setRequestDate(RequestDate.getTime());
+        assertEquals(RequestDate.getTime(),this.request.getRequestDate());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetRequestDateWithNull() {
         this.request.setRequestDate(null);
     }
@@ -134,15 +135,15 @@ public class RequestTest {
 
     @Test
     public void testGetDeadline() {
-        assertEquals(deadline,this.request.getDeadline());
+        assertEquals(deadline.getTime(),this.request.getDeadline());
     }
 
     @Test
     public void testSetDeadline() {
         Calendar deadline = Calendar.getInstance();
         deadline.set(2011, Calendar.DECEMBER, 14);
-        this.request.setRequestDate(requestDate.getTime());
-        assertEquals(deadline,this.request.getDeadline());
+        this.request.setDeadline(deadline.getTime());
+        assertEquals(deadline.getTime(),this.request.getDeadline());
     }
 
     @Test
