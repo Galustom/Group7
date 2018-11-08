@@ -59,11 +59,11 @@ public class ReaderDaoImpl implements ReaderDao {
 
     @Override
     public void requestBook(Book book) {
-
+        //TODO IMPLEMENT THIS
     }
 
     @Override
     public Collection<Book> listBorrowings(Reader reader) {
-        return null;
+        return null; //TODO IMPLEMENT THIS
     }
 }
