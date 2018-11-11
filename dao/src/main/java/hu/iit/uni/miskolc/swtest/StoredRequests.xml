@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-2" standalone="no"?>
+<requests>
+
+    <request>
+        <id>21</id>
+        <bookId>21</bookId>
+        <readerId>21</readerId>
+        <requestDate>Nov 11, 2018</requestDate>
+        <approve>true</approve>
+        <approvalLibrarianId>34563456</approvalLibrarianId>
+        <deadline>Nov 11, 2019</deadline>
+        <returned>false</returned>
+        <active>true</active>
+    </request>
+
+    <request>
+        <id>22</id>
+        <bookId>22</bookId>
+        <readerId>21</readerId>
+        <requestDate>Aug 11, 2018</requestDate>
+        <approve>false</approve>
+        <approvalLibrarianId>22</approvalLibrarianId>
+        <deadline>Aug 11, 2019</deadline>
+        <returned>false</returned>
+        <active>false</active>
+    </request>
+
+</requests>

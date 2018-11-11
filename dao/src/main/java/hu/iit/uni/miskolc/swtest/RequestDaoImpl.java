@@ -108,19 +108,19 @@ public class RequestDaoImpl implements RequestDao {
                 Node node = nodeList.item(i);
                 Element element = (Element) node;
 
-                String[] currenRequest = new String[8];
+                String[] currentRequest = new String[9];
 
-                currenRequest[0] = element.getElementsByTagName("id").item(0).getTextContent();
-                currenRequest[1] = element.getElementsByTagName("bookId").item(0).getTextContent();
-                currenRequest[2] = element.getElementsByTagName("readerId").item(0).getTextContent();
-                currenRequest[3] = element.getElementsByTagName("requestDate").item(0).getTextContent();
-                currenRequest[4] = element.getElementsByTagName("approve").item(0).getTextContent();
-                currenRequest[5] = element.getElementsByTagName("approvalLibrarianId").item(0).getTextContent();
-                currenRequest[6] = element.getElementsByTagName("deadline").item(0).getTextContent();
-                currenRequest[7] = element.getElementsByTagName("returned").item(0).getTextContent();
-                currenRequest[8] = element.getElementsByTagName("active").item(0).getTextContent();
+                currentRequest[0] = element.getElementsByTagName("id").item(0).getTextContent();
+                currentRequest[1] = element.getElementsByTagName("bookId").item(0).getTextContent();
+                currentRequest[2] = element.getElementsByTagName("readerId").item(0).getTextContent();
+                currentRequest[3] = element.getElementsByTagName("requestDate").item(0).getTextContent();
+                currentRequest[4] = element.getElementsByTagName("approve").item(0).getTextContent();
+                currentRequest[5] = element.getElementsByTagName("approvalLibrarianId").item(0).getTextContent();
+                currentRequest[6] = element.getElementsByTagName("deadline").item(0).getTextContent();
+                currentRequest[7] = element.getElementsByTagName("returned").item(0).getTextContent();
+                currentRequest[8] = element.getElementsByTagName("active").item(0).getTextContent();
 
-                Requests.add(currenRequest);
+                Requests.add(currentRequest);
             }
         } catch (ParserConfigurationException pce) {
             //Determine what to do here!

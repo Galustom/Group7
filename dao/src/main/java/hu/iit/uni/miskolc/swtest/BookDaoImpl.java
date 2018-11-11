@@ -44,6 +44,7 @@ public class BookDaoImpl implements BookDao {
             ));
         }
 
+        //TODO: It does not find the already existing book, need to find a solution
         if(Books.contains(book)){
             throw new BookEntryAlreadyAddedException();
         }
