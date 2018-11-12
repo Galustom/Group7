@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -41,6 +42,9 @@ public class BookDaoImplTest {
 
     @Before
     public void setUp() throws Exception {
+        //másolni a db-t, temp-be temp dir-be
+        //VAGY before class-t csinálni, after-ben törölni dir-t, file-t mindent is
+        //
         bookDao = new BookDaoImpl();
     }
 
@@ -51,6 +55,15 @@ public class BookDaoImplTest {
 
         List<Book> books = (List<Book>) bookDao.readBooks();
         Assert.assertEquals(book.getId(), books.get(books.size() - 1).getId());
+
+        File file = new File("D:\\Egyetem\\Szoftvertesztelés\\tesztdzsoni\\Group7\\dao\\StoredBooks.xml");
+
+        //FileOutputStream fos = FileOutputStream("D:\\Egyetem\\Szoftvertesztelés\\tesztdzsoni\\Group7\\dao\\StoredBooks.xml");
+        if(file.delete()){
+            System.out.println(file.getName() + " is deleted!");
+        }else{
+            System.out.println("Delete operation is failed.");
+        }
     }
 
     @Test

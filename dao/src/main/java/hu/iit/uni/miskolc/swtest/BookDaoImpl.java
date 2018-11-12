@@ -44,24 +44,24 @@ public class BookDaoImpl implements BookDao {
             ));
         }
 
-        //TODO: It does not find the already existing book, need to find a solution
-        if(Books.contains(book)){
-            throw new BookEntryAlreadyAddedException();
+        for(int i = 0; i < Books.size(); i++){
+            if(Books.get(i).getId()==book.getId()){
+                throw new BookEntryAlreadyAddedException();
+            }
         }
-        else{
-            Books.add(book);
-            StringBooks.add(new String[]{
-                    Integer.toString(book.getId()),
-                    book.getName(),
-                    book.getGenre(),
-                    book.getAuthor(),
-                    book.getPublisher(),
-                    book.getIsbn(),
-                    Integer.toString(book.getQuantity()),
-                    Integer.toString(book.getAvailable())
-            });
-            WriteAllBook(StringBooks);
-        }
+
+        Books.add(book);
+        StringBooks.add(new String[]{
+                Integer.toString(book.getId()),
+                book.getName(),
+                book.getGenre(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getIsbn(),
+                Integer.toString(book.getQuantity()),
+                Integer.toString(book.getAvailable())
+        });
+        WriteAllBook(StringBooks);
     }
 
     @Override
