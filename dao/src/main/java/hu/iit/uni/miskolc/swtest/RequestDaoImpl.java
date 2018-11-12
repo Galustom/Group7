@@ -73,23 +73,25 @@ public class RequestDaoImpl implements RequestDao {
                 ));
             }
 
-            if (Requests.contains(request)) {
-                throw new RequestEntryAlreadyAddedException();
-            } else {
-                Requests.add(request);
-                StringRequests.add(new String[]{
-                        Integer.toString(request.getId()),
-                        Integer.toString(request.getBookId()),
-                        Integer.toString(request.getReaderId()),
-                        format.format(request.getRequestDate()),
-                        String.valueOf(request.isApprove()),
-                        Integer.toString(request.getApprovalLibrarianId()),
-                        format.format(request.getDeadline()),
-                        String.valueOf(request.isReturned()),
-                        String.valueOf(request.isActive())
-                });
-                WriteAllRequest(StringRequests);
+            for (int i = 0; i < Requests.size(); i++){
+                if(Requests.get(i).getId()==request.getId()){
+                    throw new RequestEntryAlreadyAddedException();
+                }
             }
+
+            Requests.add(request);
+            StringRequests.add(new String[]{
+                    Integer.toString(request.getId()),
+                    Integer.toString(request.getBookId()),
+                    Integer.toString(request.getReaderId()),
+                    format.format(request.getRequestDate()),
+                    String.valueOf(request.isApprove()),
+                    Integer.toString(request.getApprovalLibrarianId()),
+                    format.format(request.getDeadline()),
+                    String.valueOf(request.isReturned()),
+                    String.valueOf(request.isActive())
+            });
+            WriteAllRequest(StringRequests);
         }
         catch (Exception e)
         {}
