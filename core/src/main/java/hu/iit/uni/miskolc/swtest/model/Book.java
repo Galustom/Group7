@@ -1,5 +1,7 @@
 package hu.iit.uni.miskolc.swtest.model;
 
+import java.util.Objects;
+
 public class Book {
 
     private int id;
@@ -70,5 +72,25 @@ public class Book {
 
     public Boolean validate(){
         return getAvailable() >= 0 && getQuantity() >= 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id == book.id &&
+                quantity == book.quantity &&
+                available == book.available &&
+                name.equals(book.name) &&
+                genre.equals(book.genre) &&
+                author.equals(book.author) &&
+                publisher.equals(book.publisher) &&
+                isbn.equals(book.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, genre, author, publisher, isbn, quantity, available);
     }
 }

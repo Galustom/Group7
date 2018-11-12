@@ -16,8 +16,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import org.hamcrest.collection.IsEmptyCollection;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+
+import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
+import static org.hamcrest.number.OrderingComparison.lessThan;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BookDaoImplTest {
 
@@ -47,21 +58,21 @@ public class BookDaoImplTest {
         //TODO: It can't compare the arrays, in spite they contain the same data, "Assert.assertEquals" returns false...
         Collection<Book> bookinmemory = new ArrayList<>();
 
-        Book book = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
-        bookDao.createBook(book);
-        bookinmemory.add(book);
-        book = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
-        bookDao.createBook(book);
-        bookinmemory.add(book);
-        book = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
-        bookDao.createBook(book);
-        bookinmemory.add(book);
-        book = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
-        bookDao.createBook(book);
-        bookinmemory.add(book);
+        Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        bookDao.createBook(book1);
+        bookinmemory.add(book1);
+        Book book2 = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        bookDao.createBook(book2);
+        bookinmemory.add(book2);
+        Book book3 = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        bookDao.createBook(book3);
+        bookinmemory.add(book3);
+        Book book4 = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        bookDao.createBook(book4);
+        bookinmemory.add(book4);
 
-        List<Book> books = (List<Book>) bookDao.readBooks();
-        Assert.assertEquals(bookinmemory, books);
+        Collection<Book> books = bookDao.readBooks();
+        assertEquals(bookinmemory, books);
     }
 
     @Test
