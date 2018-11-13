@@ -1,6 +1,7 @@
 package hu.iit.uni.miskolc.swtest;
 
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
+import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
@@ -72,15 +73,26 @@ public class BookDaoImplTest {
     }
 
     @Test
-    public void testUpdateBook() {
+    public void testUpdateBook() throws BookEntryAlreadyAddedException, BookEntryNotFoundException {
+        Book book = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        bookDao.createBook(book);
+
+        Book modified = new Book(6461, "JANI", "THRILLER", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);;
+        bookDao.updateBook(modified);
+
+        List<Book> books = (List<Book>) bookDao.readBooks();
+        Assert.assertEquals(modified, books.get(0));
     }
 
     @Test
-    public void testDeleteBook() {
-    }
+    public void testDeleteBook() throws BookEntryAlreadyAddedException, BookEntryNotFoundException {
+        Book book = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        bookDao.createBook(book);
 
-    @Test
-    public void testReadAllBook() {
+        bookDao.deleteBook(book);
+
+        List<Book> books = (List<Book>) bookDao.readBooks();
+        Assert.assertEquals(new ArrayList<Book>(), books);
     }
 
     @After

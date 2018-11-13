@@ -99,12 +99,19 @@ public class BookDaoImpl implements BookDao {
             ));
         }
 
-        if(!Books.contains(book)){
+        boolean gotIt = false;
+        int indexOfInput = 0;
+        for(int i = 0; i < Books.size(); i++){
+            if(Books.get(i).getId()==book.getId()){
+                gotIt = true;
+                indexOfInput = i;
+            }
+        }
+
+        if(!gotIt){
             throw new BookEntryNotFoundException();
         }
         else{
-            int indexOfInput = Books.indexOf(book);
-
             StringBooks.get(indexOfInput)[0]=Integer.toString(book.getId());
             StringBooks.get(indexOfInput)[1]=book.getName();
             StringBooks.get(indexOfInput)[2]=book.getGenre();
@@ -141,6 +148,8 @@ public class BookDaoImpl implements BookDao {
         else {
             StringBooks.remove(Books.indexOf(book));
         }
+
+        WriteAllBook(StringBooks);
     }
 
     public static List<String[]> ReadAllBook() {
