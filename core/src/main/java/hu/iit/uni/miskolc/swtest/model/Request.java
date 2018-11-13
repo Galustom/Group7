@@ -122,6 +122,21 @@ public class Request {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return  id==request.id &&
+                bookId==request.bookId &&
+                readerId==request.readerId &&
+                requestDate.equals(request.requestDate) &&
+                approve == request.approve &&
+                approvalLibrarianId == request.approvalLibrarianId &&
+                deadline.equals(request.deadline) &&
+                returned == request.returned &&
+                active == request.active;
+    }
 
     /*private Collection<Book> requestedBooks;
 
