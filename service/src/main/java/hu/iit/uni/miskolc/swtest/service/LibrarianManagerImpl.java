@@ -1,6 +1,7 @@
 package hu.iit.uni.miskolc.swtest.service;
 
 import hu.iit.uni.miskolc.swtest.dao.BookDao;
+import hu.iit.uni.miskolc.swtest.dao.ReaderDao;
 import hu.iit.uni.miskolc.swtest.dao.RequestDao;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
@@ -19,6 +20,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
 
     private BookDao librarianManagerDAO;
     private RequestDao requestDao;
+    private ReaderDao readerDao;
 
     public LibrarianManagerImpl (BookDao librarianManagerDAO) {this.librarianManagerDAO = librarianManagerDAO;}
 
@@ -29,7 +31,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
 
     @Override
     public Collection<Request> listReaderRequests(Reader reader) {
-        return null; //TODO implement this
+        return requestDao.readRequests();
     }
 
     @Override
@@ -97,16 +99,14 @@ public class LibrarianManagerImpl implements LibrarianManager {
         return results;
     }
 
-    //TODO NEED TO BE FIXED
     @Override
     public Collection<Book> listReaderBorrowings(Reader reader){
-        //return reader.getBorrowings();
-        return null;
+        return readerDao.listBorrowings(reader);
     }
 
     //public Collection<RequestManager> listReaderRequests(Reader reader) { }
     public  void fulfillRequest(Reader reader){
-        // TODO: implement
+        //TODO implement
     }
 
     @Override
