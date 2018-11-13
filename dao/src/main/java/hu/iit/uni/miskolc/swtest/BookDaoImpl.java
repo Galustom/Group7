@@ -19,8 +19,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -44,23 +43,24 @@ public class BookDaoImpl implements BookDao {
             ));
         }
 
-        if(Books.contains(book)){
-            throw new BookEntryAlreadyAddedException();
+        for(int i = 0; i < Books.size(); i++){
+            if(Books.get(i).getId()==book.getId()){
+                throw new BookEntryAlreadyAddedException();
+            }
         }
-        else{
-            Books.add(book);
-            StringBooks.add(new String[]{
-                    Integer.toString(book.getId()),
-                    book.getName(),
-                    book.getGenre(),
-                    book.getAuthor(),
-                    book.getPublisher(),
-                    book.getIsbn(),
-                    Integer.toString(book.getQuantity()),
-                    Integer.toString(book.getAvailable())
-            });
-            WriteAllBook(StringBooks);
-        }
+
+        Books.add(book);
+        StringBooks.add(new String[]{
+                Integer.toString(book.getId()),
+                book.getName(),
+                book.getGenre(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getIsbn(),
+                Integer.toString(book.getQuantity()),
+                Integer.toString(book.getAvailable())
+        });
+        WriteAllBook(StringBooks);
     }
 
     @Override
@@ -99,12 +99,19 @@ public class BookDaoImpl implements BookDao {
             ));
         }
 
-        if(!Books.contains(book)){
+        boolean gotIt = false;
+        int indexOfInput = 0;
+        for(int i = 0; i < Books.size(); i++){
+            if(Books.get(i).getId()==book.getId()){
+                gotIt = true;
+                indexOfInput = i;
+            }
+        }
+
+        if(!gotIt){
             throw new BookEntryNotFoundException();
         }
         else{
-            int indexOfInput = Books.indexOf(book);
-
             StringBooks.get(indexOfInput)[0]=Integer.toString(book.getId());
             StringBooks.get(indexOfInput)[1]=book.getName();
             StringBooks.get(indexOfInput)[2]=book.getGenre();
@@ -141,6 +148,8 @@ public class BookDaoImpl implements BookDao {
         else {
             StringBooks.remove(Books.indexOf(book));
         }
+
+        WriteAllBook(StringBooks);
     }
 
     public static List<String[]> ReadAllBook() {
@@ -148,8 +157,9 @@ public class BookDaoImpl implements BookDao {
         Document dom;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
+            InputStream is = new FileInputStream("StoredBooks.xml");
             DocumentBuilder db = dbf.newDocumentBuilder();
-            dom = db.parse("StoredBooks.xml");
+            dom = db.parse(is);
             NodeList nodeList = dom.getElementsByTagName("book");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -224,7 +234,9 @@ public class BookDaoImpl implements BookDao {
                 tr.setOutputProperty(OutputKeys.METHOD, "xml");
                 tr.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-2");
                 tr.setOutputProperty("{http://xml.apache.org/xslt} indent-amount", "4");
-                tr.transform(new DOMSource(dom), new StreamResult(new FileOutputStream("StoredBooks.xml")));
+                FileOutputStream fos = new FileOutputStream("StoredBooks.xml");
+                tr.transform(new DOMSource(dom), new StreamResult(fos));
+                fos.close();
             } catch (TransformerException te) {
                 //Determine what to do here!
             } catch (IOException ioe) {

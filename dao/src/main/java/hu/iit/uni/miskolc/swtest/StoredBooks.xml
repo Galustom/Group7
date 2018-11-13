@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-2" standalone="no"?>
+<books>
+
+    <book>
+        <id>21</id>
+        <name>Harry Potter 1</name>
+        <genre>Fantasy</genre>
+        <author>J.K. Rowling</author>
+        <publisher>Pottermore</publisher>
+        <isbn>9781781102459</isbn>
+        <quantity>100</quantity>
+        <available>98</available>
+    </book>
+
+
+    <book>
+        <id>21</id>
+        <name>Harry Potter 1</name>
+        <genre>Fantasy</genre>
+        <author>J.K. Rowling</author>
+        <publisher>Pottermore</publisher>
+        <isbn>9781781102459</isbn>
+        <quantity>100</quantity>
+        <available>98</available>
+    </book>
+
+    <book>
+        <id>23</id>
+        <name>Harry Potter 3</name>
+        <genre>Fantasy</genre>
+        <author>J.K. Rowling</author>
+        <publisher>Pottermore</publisher>
+        <isbn>9781781102461</isbn>
+        <quantity>102</quantity>
+        <available>98</available>
+    </book>
+
+    <book>
+        <id>24</id>
+        <name>Harry Potter 4</name>
+        <genre>Fantasy</genre>
+        <author>J.K. Rowling</author>
+        <publisher>Pottermore</publisher>
+        <isbn>9781781102462</isbn>
+        <quantity>103</quantity>
+        <available>98</available>
+    </book>
+
+    <book>
+        <id>25</id>
+        <name>Harry Potter 5</name>
+        <genre>Fantasy</genre>
+        <author>J.K. Rowling</author>
+        <publisher>Pottermore</publisher>
+        <isbn>9781781102463</isbn>
+        <quantity>104</quantity>
+        <available>98</available>
+    </book>
+
+</books>

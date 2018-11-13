@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-2" standalone="no"?>
+<users>
+
+    <user>
+        <id>21</id>
+        <username>Daniel Radcliffe</username>
+        <password>mypatronisadeer</password>
+    </user>
+
+    <user>
+        <id>22</id>
+        <username>Emma Watson</username>
+        <password>belleoverhermione</password>
+    </user>
+
+</users>
