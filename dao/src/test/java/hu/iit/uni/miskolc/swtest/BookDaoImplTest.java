@@ -2,10 +2,7 @@ package hu.iit.uni.miskolc.swtest;
 
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.model.Book;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import java.io.File;
@@ -33,8 +30,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BookDaoImplTest {
 
-    //TODO: Make rollback function to every test-case
-
     private BookDaoImpl bookDao;
 
     @Rule
@@ -42,9 +37,6 @@ public class BookDaoImplTest {
 
     @Before
     public void setUp() throws Exception {
-        //másolni a db-t, temp-be temp dir-be
-        //VAGY before class-t csinálni, after-ben törölni dir-t, file-t mindent is
-        //
         bookDao = new BookDaoImpl();
     }
 
@@ -55,15 +47,6 @@ public class BookDaoImplTest {
 
         List<Book> books = (List<Book>) bookDao.readBooks();
         Assert.assertEquals(book.getId(), books.get(books.size() - 1).getId());
-
-        File file = new File("D:\\Egyetem\\Szoftvertesztelés\\tesztdzsoni\\Group7\\dao\\StoredBooks.xml");
-
-        //FileOutputStream fos = FileOutputStream("D:\\Egyetem\\Szoftvertesztelés\\tesztdzsoni\\Group7\\dao\\StoredBooks.xml");
-        if(file.delete()){
-            System.out.println(file.getName() + " is deleted!");
-        }else{
-            System.out.println("Delete operation is failed.");
-        }
     }
 
     @Test
@@ -98,5 +81,11 @@ public class BookDaoImplTest {
 
     @Test
     public void testReadAllBook() {
+    }
+
+    @After
+    public void rollBack() {
+        File file = new File("StoredBooks.xml");
+        file.delete();
     }
 }

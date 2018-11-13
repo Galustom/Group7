@@ -19,8 +19,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -149,8 +148,9 @@ public class BookDaoImpl implements BookDao {
         Document dom;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
+            InputStream is = new FileInputStream("StoredBooks.xml");
             DocumentBuilder db = dbf.newDocumentBuilder();
-            dom = db.parse("StoredBooks.xml");
+            dom = db.parse(is);
             NodeList nodeList = dom.getElementsByTagName("book");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -225,7 +225,9 @@ public class BookDaoImpl implements BookDao {
                 tr.setOutputProperty(OutputKeys.METHOD, "xml");
                 tr.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-2");
                 tr.setOutputProperty("{http://xml.apache.org/xslt} indent-amount", "4");
-                tr.transform(new DOMSource(dom), new StreamResult(new FileOutputStream("StoredBooks.xml")));
+                FileOutputStream fos = new FileOutputStream("StoredBooks.xml");
+                tr.transform(new DOMSource(dom), new StreamResult(fos));
+                fos.close();
             } catch (TransformerException te) {
                 //Determine what to do here!
             } catch (IOException ioe) {
