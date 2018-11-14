@@ -64,6 +64,6 @@ public class ReaderDaoImpl implements ReaderDao {
 
     @Override
     public Collection<Book> listBorrowings(Reader reader) {
-        return null; //TODO IMPLEMENT THIS
+        return reader.getBorrowings().getBorrowedBooks();
     }
 }
