@@ -135,6 +135,7 @@ public class RequestDaoImpl implements RequestDao {
         return Requests;
     }
 
+
     private static void WriteAllRequest(List<String[]> Requests) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         Document dom;
@@ -200,8 +201,20 @@ public class RequestDaoImpl implements RequestDao {
         Collection<Request> Requests = readRequests();
 
         Request request = Requests.stream().filter((req)-> req.getId() == requestId).findFirst().orElse(null);
-
-
         return request ;
+    }
+
+    public static int getNextId()
+    {
+        int nextId = 0;
+        Collection<Request> requests = readRequests();
+        for (Request request : requests)
+        {
+            if (nextId < request.getId())
+            {
+                nextId = request.getId();
+            }
+        }
+        return nextId;
     }
 }

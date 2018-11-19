@@ -1,7 +1,9 @@
 package hu.iit.uni.miskolc.swtest.model;
 
 
+import java.util.Calendar;
 import java.util.Date;
+import static hu.iit.
 
 public class Request {
 
@@ -24,7 +26,7 @@ public class Request {
     private boolean active;
 
     public Request(int id, int bookId, int readerId, Date requestDate, boolean approve, int approvalLibrarianId, Date deadline, boolean returned, boolean active) {
-        this.id = id;
+        this.id = id; //It need to be auto generated after items in Database/XML
         this.bookId = bookId;
         this.readerId = readerId;
         this.requestDate = requestDate;
@@ -33,6 +35,23 @@ public class Request {
         this.deadline = deadline;
         this.returned = returned;
         this.active = active;
+    }
+
+    public Request(int bookId, int readerId)
+    {
+        this.id = getNextId(); //need to implement
+        this.bookId = bookId;
+        this.readerId = readerId;
+        this.requestDate = new Date();
+        this.approve= false;
+        this.approvalLibrarianId = 0;
+            int noOfDays = 14; //Two Week
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(this.requestDate);
+            calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+        this.deadline  = calendar.getTime();
+        this.returned = false;
+        this.active = true;
     }
 
     public int getId() {

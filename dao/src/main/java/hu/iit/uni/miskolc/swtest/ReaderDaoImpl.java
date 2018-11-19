@@ -3,12 +3,14 @@ package hu.iit.uni.miskolc.swtest;
 import hu.iit.uni.miskolc.swtest.dao.ReaderDao;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.Reader;
+import hu.iit.uni.miskolc.swtest.model.Request;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import static hu.iit.uni.miskolc.swtest.BookDaoImpl.ReadAllBook;
+import static hu.iit.uni.miskolc.swtest.RequestDaoImpl.ReadAllRequest;
 
 public class ReaderDaoImpl implements ReaderDao {
 
@@ -60,6 +62,7 @@ public class ReaderDaoImpl implements ReaderDao {
     @Override
     public void requestBook(Book book) {
         //TODO IMPLEMENT THIS
+        Request newRequest = new Request(book.getId(),reader.getId);
     }
 
     @Override
