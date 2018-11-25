@@ -203,18 +203,4 @@ public class RequestDaoImpl implements RequestDao {
         Request request = Requests.stream().filter((req)-> req.getId() == requestId).findFirst().orElse(null);
         return request ;
     }
-
-    public static int getNextId()
-    {
-        int nextId = 0;
-        Collection<Request> requests = readRequests();
-        for (Request request : requests)
-        {
-            if (nextId < request.getId())
-            {
-                nextId = request.getId();
-            }
-        }
-        return nextId;
-    }
 }

@@ -37,9 +37,9 @@ public class Request {
         this.active = active;
     }
 
-    public Request(int bookId, int readerId)
+    public Request( int requestId,int bookId, int readerId)
     {
-        this.id = getNextId(); //need to implement
+        this.id = requestId; //CheckAlready
         this.bookId = bookId;
         this.readerId = readerId;
         this.requestDate = new Date();
