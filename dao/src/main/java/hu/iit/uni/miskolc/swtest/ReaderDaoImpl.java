@@ -60,9 +60,9 @@ public class ReaderDaoImpl implements ReaderDao {
     }
 
     @Override
-    public void requestBook(Book book) {
+    public void requestBook(Request request, Book book, Reader reader) {
         //TODO IMPLEMENT THIS
-        Request newRequest = new Request(book.getId(),reader.getId);
+        Request newRequest = new Request(request.getId(), book.getId(),reader.getId());
     }
 
     @Override
