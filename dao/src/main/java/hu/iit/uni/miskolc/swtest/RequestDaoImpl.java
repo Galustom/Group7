@@ -5,6 +5,7 @@ import hu.iit.uni.miskolc.swtest.model.Request;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.RequestEntryAlreadyAddedException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -134,6 +135,7 @@ public class RequestDaoImpl implements RequestDao {
         return Requests;
     }
 
+
     private static void WriteAllRequest(List<String[]> Requests) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         Document dom;
@@ -181,7 +183,9 @@ public class RequestDaoImpl implements RequestDao {
                 tr.setOutputProperty(OutputKeys.METHOD, "xml");
                 tr.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-2");
                 tr.setOutputProperty("{http://xml.apache.org/xslt} indent-amount", "4");
-                tr.transform(new DOMSource(dom), new StreamResult(new FileOutputStream("StoredRequests.xml")));
+                FileOutputStream fos = new FileOutputStream("StoredRequests.xml");
+                tr.transform(new DOMSource(dom), new StreamResult(fos));
+                fos.close();
             } catch (TransformerException te) {
                 //Determine what to do here!
             } catch (IOException ioe) {
@@ -197,8 +201,6 @@ public class RequestDaoImpl implements RequestDao {
         Collection<Request> Requests = readRequests();
 
         Request request = Requests.stream().filter((req)-> req.getId() == requestId).findFirst().orElse(null);
-
-
         return request ;
     }
 }
