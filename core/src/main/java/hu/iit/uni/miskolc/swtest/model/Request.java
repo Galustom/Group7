@@ -3,7 +3,6 @@ package hu.iit.uni.miskolc.swtest.model;
 
 import java.util.Calendar;
 import java.util.Date;
-import static hu.iit.
 
 public class Request {
 

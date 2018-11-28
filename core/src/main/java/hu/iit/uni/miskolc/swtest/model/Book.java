@@ -1,5 +1,7 @@
 package hu.iit.uni.miskolc.swtest.model;
 
+import hu.iit.uni.miskolc.swtest.exceptions.*;
+
 import java.util.Objects;
 
 public class Book {
@@ -13,15 +15,15 @@ public class Book {
     private int quantity;
     private int available;
 
-    public Book(int id, String name, String genre, String author, String publisher, String isbn, int quantity, int available) {
-        this.id = id;
-        this.name = name;
-        this.genre = genre;
-        this.author = author;
-        this.publisher = publisher;
-        this.isbn = isbn;
-        this.quantity = quantity;
-        this.available = available;
+    public Book(int id, String name, String genre, String author, String publisher, String isbn, int quantity, int available) throws AvailableNotValidException, QuantityNotValidException, IsbnIsEmptyException, PublisherIsEmptyException, AuthorIsEmptyException, GenreIsEmptyException, NameIsEmptyException, IdNotValidException {
+        this.setId(id);
+        this.setName(name);
+        this.setGenre(genre);
+        this.setAuthor(author);
+        this.setPublisher(publisher);
+        this.setIsbn(isbn);
+        this.setQuantity(quantity);
+        this.setAvailable(available);
     }
 
     public int getId() {
@@ -56,6 +58,54 @@ public class Book {
         return available;
     }
 
+    public void setId(int id) throws IdNotValidException {
+        if (id <= 0)
+            throw new IdNotValidException();
+        this.id = id;
+    }
+
+    public void setName(String name) throws NameIsEmptyException {
+        if (name.equals(""))
+            throw new NameIsEmptyException();
+        this.name = name;
+    }
+
+    public void setGenre(String genre) throws GenreIsEmptyException {
+        if (genre.equals(""))
+            throw new GenreIsEmptyException();
+        this.genre = genre;
+    }
+
+    public void setAuthor(String author) throws AuthorIsEmptyException {
+        if (author.equals(""))
+            throw new AuthorIsEmptyException();
+        this.author = author;
+    }
+
+    public void setPublisher(String publisher) throws PublisherIsEmptyException {
+        if (publisher.equals(""))
+            throw new PublisherIsEmptyException();
+        this.publisher = publisher;
+    }
+
+    public void setIsbn(String isbn) throws IsbnIsEmptyException {
+        if (isbn.equals(""))
+            throw new IsbnIsEmptyException();
+        this.isbn = isbn;
+    }
+
+    public void setQuantity(int quantity) throws QuantityNotValidException {
+        if (quantity < 0)
+            throw new QuantityNotValidException();
+        this.quantity = quantity;
+    }
+
+    public void setAvailable(int available) throws AvailableNotValidException {
+        if (available < 0)
+            throw new AvailableNotValidException();
+        this.available = available;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -70,9 +120,9 @@ public class Book {
                 '}';
     }
 
-    public Boolean validate(){
-        return getAvailable() >= 0 && getQuantity() >= 0;
-    }
+//    public Boolean validate(){
+//        return getAvailable() >= 0 && getQuantity() >= 0;
+//    }
 
     @Override
     public boolean equals(Object o) {

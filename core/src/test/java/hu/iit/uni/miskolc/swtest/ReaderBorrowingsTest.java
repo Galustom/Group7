@@ -1,5 +1,6 @@
 package hu.iit.uni.miskolc.swtest;
 
+import hu.iit.uni.miskolc.swtest.exceptions.*;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.ReaderBorrowings;
 import org.junit.Before;
@@ -24,8 +25,12 @@ public class ReaderBorrowingsTest {
 
     @Before
     public void setUp() {
+        try {
+            book = new Book(1,"valami","valami","valami","valami","valami",10,10);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
         borrowedBooks = new ArrayList<Book>();
-        book = new Book(1,"valami","valami","valami","valami","valami",10,10);
         borrowedBooks.add(book);
         readerBorrowings = new ReaderBorrowings(borrowedBooks);
     }
@@ -57,7 +62,11 @@ public class ReaderBorrowingsTest {
     @Test
     public void testSetBorrowedBooks () {
         borrowedBooks = new ArrayList<Book>();
-        book = new Book(1,"valami","valami","valami","valami","valami",10,10);
+        try {
+            book = new Book(1,"valami","valami","valami","valami","valami",10,10);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
         borrowedBooks.add(book);
         this.readerBorrowings.setBorrowedBooks(borrowedBooks);
         assertEquals(borrowedBooks, this.readerBorrowings.getBorrowedBooks());

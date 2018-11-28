@@ -30,7 +30,11 @@ public class ReaderTest {
     @Before
     public void setUp() {
         booklist = new ArrayList<Book>();
+        try {
         book = new Book(1,"valami","valami","valami","valami","valami",10,10);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
         booklist.add(book);
         readerBorrowings = new ReaderBorrowings(booklist);
         reader = new Reader(this.id,this.username,this.password,this.readerBorrowings);

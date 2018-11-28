@@ -27,9 +27,12 @@ public class BookTest {
 
     @Before
     public void setUp(){
-        book = new Book(this.id,this.name,this.genre,this.author,this.publisher,this.isbn,this.quantity,this.available);
-        invalidBook = new Book(this.id,this.name,this.genre,this.author,this.publisher,this.isbn,-1,-1);
-
+        try {
+            book = new Book(this.id,this.name,this.genre,this.author,this.publisher,this.isbn,this.quantity,this.available);
+            invalidBook = new Book(this.id,this.name,this.genre,this.author,this.publisher,this.isbn,-1,-1);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -96,13 +99,4 @@ public class BookTest {
         assertEquals(this.available, this.book.getAvailable());
     }
 
-    @Test
-    public void testValidateWithGoodValues() {
-        assertEquals(true, this.book.validate());
-    }
-
-    @Test
-    public void testValidateWithBadValues() {
-        assertEquals(false, this.invalidBook.validate());
-    }
 }
