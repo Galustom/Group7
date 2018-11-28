@@ -7,27 +7,11 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import org.hamcrest.collection.IsEmptyCollection;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
-import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
-
-import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
-import static org.hamcrest.number.OrderingComparison.lessThan;
-
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class BookDaoImplTest {
 
@@ -52,7 +36,6 @@ public class BookDaoImplTest {
 
     @Test
     public void testReadBooks() throws BookEntryAlreadyAddedException {
-        //TODO: It can't compare the arrays, in spite they contain the same data, "Assert.assertEquals" returns false...
         Collection<Book> bookinmemory = new ArrayList<>();
 
         Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
@@ -77,7 +60,8 @@ public class BookDaoImplTest {
         Book book = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
         bookDao.createBook(book);
 
-        Book modified = new Book(6461, "JANI", "THRILLER", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);;
+        Book modified = new Book(6461, "JANI", "THRILLER", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        ;
         bookDao.updateBook(modified);
 
         List<Book> books = (List<Book>) bookDao.readBooks();

@@ -1,5 +1,9 @@
 package hu.iit.uni.miskolc.swtest.model;
 
+import hu.iit.uni.miskolc.swtest.exceptions.BookListNullException;
+import hu.iit.uni.miskolc.swtest.exceptions.IdNotValidException;
+import hu.iit.uni.miskolc.swtest.exceptions.NameIsEmptyException;
+
 import java.util.Collection;
 
 public class Library {
@@ -24,6 +28,24 @@ public class Library {
 
     public Collection<Book> getBookList() {
         return BookList;
+    }
+
+    public void setId(int id) throws IdNotValidException {
+        if (id <= 0)
+            throw new IdNotValidException();
+        this.id = id;
+    }
+
+    public void setName(String name) throws NameIsEmptyException {
+        if (name.equals(""))
+            throw new NameIsEmptyException();
+        this.name = name;
+    }
+
+    public void setBookList(Collection<Book> bookList) throws BookListNullException {
+        if (bookList == null)
+            throw new BookListNullException();
+        BookList = bookList;
     }
 
     @Override

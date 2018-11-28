@@ -120,10 +120,6 @@ public class Book {
                 '}';
     }
 
-//    public Boolean validate(){
-//        return getAvailable() >= 0 && getQuantity() >= 0;
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
