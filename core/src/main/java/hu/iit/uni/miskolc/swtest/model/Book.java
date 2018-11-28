@@ -15,15 +15,15 @@ public class Book {
     private int quantity;
     private int available;
 
-    public Book(int id, String name, String genre, String author, String publisher, String isbn, int quantity, int available) throws AvailableNotValidException, QuantityNotValidException, IsbnIsEmptyException, PublisherIsEmptyException, AuthorIsEmptyException, GenreIsEmptyException, NameIsEmptyException, IdNotValidException {
-        this.setId(id);
-        this.setName(name);
-        this.setGenre(genre);
-        this.setAuthor(author);
-        this.setPublisher(publisher);
-        this.setIsbn(isbn);
-        this.setQuantity(quantity);
-        this.setAvailable(available);
+    public Book(int id, String name, String genre, String author, String publisher, String isbn, int quantity, int available) {
+        this.id = id;
+        this.name = name;
+        this.genre = genre;
+        this.author = author;
+        this.publisher = publisher;
+        this.isbn = isbn;
+        this.quantity = quantity;
+        this.available = available;
     }
 
     public int getId() {
