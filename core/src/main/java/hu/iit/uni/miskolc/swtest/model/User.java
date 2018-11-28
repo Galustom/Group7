@@ -1,8 +1,8 @@
 package hu.iit.uni.miskolc.swtest.model;
 
-import hu.iit.uni.miskolc.swtest.exceptions.IdNotValidException;
-import hu.iit.uni.miskolc.swtest.exceptions.PasswordIsEmptyException;
-import hu.iit.uni.miskolc.swtest.exceptions.UsernameIsEmptyException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.PasswordIsEmptyException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.UsernameIsEmptyException;
 
 public class User {
 

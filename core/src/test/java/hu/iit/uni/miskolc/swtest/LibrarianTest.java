@@ -1,8 +1,8 @@
 package hu.iit.uni.miskolc.swtest;
 
-import hu.iit.uni.miskolc.swtest.exceptions.RequestsAreNullException;
 import hu.iit.uni.miskolc.swtest.model.Librarian;
 import hu.iit.uni.miskolc.swtest.model.Request;
+import hu.iit.uni.miskolc.swtest.model.exceptions.RequestsAreNullException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package hu.iit.uni.miskolc.swtest.model;
 
-import hu.iit.uni.miskolc.swtest.exceptions.RequestsAreNullException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.RequestsAreNullException;
 
 import java.util.Collection;
 import java.util.Objects;

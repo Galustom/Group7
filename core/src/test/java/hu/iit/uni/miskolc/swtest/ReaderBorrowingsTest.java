@@ -1,8 +1,8 @@
 package hu.iit.uni.miskolc.swtest;
 
-import hu.iit.uni.miskolc.swtest.exceptions.BorrowingsAreNullException;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.ReaderBorrowings;
+import hu.iit.uni.miskolc.swtest.model.exceptions.BorrowingsAreNullException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package hu.iit.uni.miskolc.swtest;
 
-import hu.iit.uni.miskolc.swtest.exceptions.*;
 import hu.iit.uni.miskolc.swtest.model.Book;
+import hu.iit.uni.miskolc.swtest.model.exceptions.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

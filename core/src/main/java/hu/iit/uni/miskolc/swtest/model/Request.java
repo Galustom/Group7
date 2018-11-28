@@ -1,8 +1,8 @@
 package hu.iit.uni.miskolc.swtest.model;
 
 
-import hu.iit.uni.miskolc.swtest.exceptions.DateIsNullException;
-import hu.iit.uni.miskolc.swtest.exceptions.IdNotValidException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.DateIsNullException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
 
 import java.util.Calendar;
 import java.util.Date;

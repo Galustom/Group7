@@ -1,4 +1,4 @@
-package hu.iit.uni.miskolc.swtest.exceptions;
+package hu.iit.uni.miskolc.swtest.model.exceptions;
 
 public class NameIsEmptyException extends Exception {
     public NameIsEmptyException() {

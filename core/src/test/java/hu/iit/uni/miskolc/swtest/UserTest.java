@@ -1,9 +1,9 @@
 package hu.iit.uni.miskolc.swtest;
 
-import hu.iit.uni.miskolc.swtest.exceptions.IdNotValidException;
-import hu.iit.uni.miskolc.swtest.exceptions.PasswordIsEmptyException;
-import hu.iit.uni.miskolc.swtest.exceptions.UsernameIsEmptyException;
 import hu.iit.uni.miskolc.swtest.model.User;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.PasswordIsEmptyException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.UsernameIsEmptyException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

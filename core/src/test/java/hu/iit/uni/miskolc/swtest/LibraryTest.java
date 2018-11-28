@@ -1,10 +1,10 @@
 package hu.iit.uni.miskolc.swtest;
 
-import hu.iit.uni.miskolc.swtest.exceptions.BookListNullException;
-import hu.iit.uni.miskolc.swtest.exceptions.IdNotValidException;
-import hu.iit.uni.miskolc.swtest.exceptions.NameIsEmptyException;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.Library;
+import hu.iit.uni.miskolc.swtest.model.exceptions.BookListNullException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.NameIsEmptyException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

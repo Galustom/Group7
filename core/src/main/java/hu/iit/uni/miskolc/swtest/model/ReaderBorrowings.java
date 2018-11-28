@@ -1,6 +1,6 @@
 package hu.iit.uni.miskolc.swtest.model;
 
-import hu.iit.uni.miskolc.swtest.exceptions.BorrowingsAreNullException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.BorrowingsAreNullException;
 
 import java.util.Collection;
 

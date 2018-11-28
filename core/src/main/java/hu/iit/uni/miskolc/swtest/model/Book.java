@@ -1,6 +1,6 @@
 package hu.iit.uni.miskolc.swtest.model;
 
-import hu.iit.uni.miskolc.swtest.exceptions.*;
+import hu.iit.uni.miskolc.swtest.model.exceptions.*;
 
 import java.util.Objects;
 

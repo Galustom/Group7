@@ -1,8 +1,8 @@
 package hu.iit.uni.miskolc.swtest;
 
-import hu.iit.uni.miskolc.swtest.exceptions.DateIsNullException;
-import hu.iit.uni.miskolc.swtest.exceptions.IdNotValidException;
 import hu.iit.uni.miskolc.swtest.model.Request;
+import hu.iit.uni.miskolc.swtest.model.exceptions.DateIsNullException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
