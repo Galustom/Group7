@@ -8,6 +8,7 @@ import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.Reader;
 import hu.iit.uni.miskolc.swtest.model.Request;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.service.exceptions.BookDoesNotExistException;
 
@@ -22,7 +23,9 @@ public class LibrarianManagerImpl implements LibrarianManager {
     private RequestDao requestDao;
     private ReaderDao readerDao;
 
-    public LibrarianManagerImpl (BookDao librarianManagerDAO) {this.librarianManagerDAO = librarianManagerDAO;}
+    public LibrarianManagerImpl(BookDao librarianManagerDAO) {
+        this.librarianManagerDAO = librarianManagerDAO;
+    }
 
     @Override
     public Collection<Book> listBooks() {
@@ -35,24 +38,19 @@ public class LibrarianManagerImpl implements LibrarianManager {
     }
 
     @Override
-    public void addBookToLibrary(Book book) throws BookAlreadyAddedException
-    {
-        try{
-            librarianManagerDAO.createBook( book );
-        }
-        catch (BookEntryAlreadyAddedException e)
-        {
+    public void addBookToLibrary(Book book) throws BookAlreadyAddedException {
+        try {
+            librarianManagerDAO.createBook(book);
+        } catch (BookEntryAlreadyAddedException e) {
             throw new BookAlreadyAddedException(e);
         }
     }
 
     @Override
-    public void updateBook(Book book) throws BookDoesNotExistException{
-        try{
+    public void updateBook(Book book) throws BookDoesNotExistException {
+        try {
             librarianManagerDAO.updateBook(book);
-        }
-        catch (BookEntryNotFoundException e)
-        {
+        } catch (BookEntryNotFoundException e) {
             throw new BookDoesNotExistException(e);
         }
 
@@ -62,9 +60,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
     public void deleteBook(Book book) throws BookDoesNotExistException {
         try {
             librarianManagerDAO.deleteBook(book);
-        }
-        catch (BookEntryNotFoundException e)
-        {
+        } catch (BookEntryNotFoundException e) {
             throw new BookDoesNotExistException(e);
         }
     }
@@ -72,7 +68,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
     @Override
     public Collection<Book> listBooksByGenre(String genre) {
         Set<Book> results = new HashSet<Book>();
-        for(Book book : listBooks()){
+        for (Book book : listBooks()) {
             if (book.getGenre().equals(genre))
                 results.add(book);
         }
@@ -82,7 +78,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
     @Override
     public Collection<Book> listBooksByAuthor(String author) {
         Set<Book> results = new HashSet<Book>();
-        for(Book book : listBooks()){
+        for (Book book : listBooks()) {
             if (book.getAuthor().equals(author))
                 results.add(book);
         }
@@ -92,7 +88,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
     @Override
     public Collection<Book> listBooksIfAvailable() {
         Set<Book> results = new HashSet<Book>();
-        for(Book book : listBooks()){
+        for (Book book : listBooks()) {
             if (book.getAvailable() != 0)
                 results.add(book);
         }
@@ -100,12 +96,12 @@ public class LibrarianManagerImpl implements LibrarianManager {
     }
 
     @Override
-    public Collection<Book> listReaderBorrowings(Reader reader){
+    public Collection<Book> listReaderBorrowings(Reader reader) {
         return readerDao.listBorrowings(reader);
     }
 
     //public Collection<RequestManager> listReaderRequests(Reader reader) { }
-    public  void fulfillRequest(Reader reader){
+    public void fulfillRequest(Reader reader) {
         //TODO implement
     }
 
@@ -115,7 +111,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
     }
 
     @Override
-    public void approve(int requestId, Date date) {
+    public void approve(int requestId, Date date) throws IdNotValidException {
         Request requestBook = requestDao.GetRequest(requestId);
         requestBook.setApprove(true);
         requestBook.setApprovalLibrarianId(1); //Need to implement getCurrentLibrarian()

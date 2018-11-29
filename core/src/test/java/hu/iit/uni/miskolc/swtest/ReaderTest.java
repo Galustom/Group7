@@ -3,6 +3,7 @@ package hu.iit.uni.miskolc.swtest;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.Reader;
 import hu.iit.uni.miskolc.swtest.model.ReaderBorrowings;
+import hu.iit.uni.miskolc.swtest.model.exceptions.BorrowingsAreNullException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 public class ReaderTest {
 
@@ -30,34 +30,39 @@ public class ReaderTest {
     @Before
     public void setUp() {
         booklist = new ArrayList<Book>();
-        book = new Book(1,"valami","valami","valami","valami","valami",10,10);
+        book = new Book(1, "valami", "valami", "valami", "valami", "valami", 10, 10);
         booklist.add(book);
         readerBorrowings = new ReaderBorrowings(booklist);
-        reader = new Reader(this.id,this.username,this.password,this.readerBorrowings);
+        reader = new Reader(this.id, this.username, this.password, this.readerBorrowings);
     }
 
     @Test
     public void testConstructorWithLegalValues() {
-        try {
-            new Reader(this.id,this.username,this.password,this.readerBorrowings);
-        } catch (Exception e) {
-            fail(e.getMessage());
-        }
+        new Reader(this.id, this.username, this.password, this.readerBorrowings);
     }
 
     @Test
     public void testConstructorWithIllegalValues() {
-        try {
-            new Reader(this.id,null,null,null);
-            new Reader(this.id,"",null,null);
-            new Reader(this.id,null,"",null);
-        } catch (Exception e) {
-            fail(e.getMessage());
-        }
+        new Reader(this.id, null, null, null);
+        new Reader(this.id, "", null, null);
+        new Reader(this.id, null, "", null);
     }
 
     @Test
     public void testGetBorrowings() {
-        assertEquals(readerBorrowings,this.reader.getBorrowings());
+        assertEquals(readerBorrowings, this.reader.getBorrowings());
+    }
+
+    @Test
+    public void testSetBorrowings() throws BorrowingsAreNullException {
+        reader.setBorrowings(readerBorrowings);
+        assertEquals(readerBorrowings, reader.getBorrowings());
+    }
+
+    @Test(expected = BorrowingsAreNullException.class)
+    public void testSetNullBorrowings() throws BorrowingsAreNullException {
+        booklist = null;
+        readerBorrowings.setBorrowedBooks(booklist);
+        reader.setBorrowings(readerBorrowings);
     }
 }

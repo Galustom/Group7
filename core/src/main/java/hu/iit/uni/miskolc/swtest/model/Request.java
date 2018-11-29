@@ -1,9 +1,11 @@
 package hu.iit.uni.miskolc.swtest.model;
 
 
+import hu.iit.uni.miskolc.swtest.model.exceptions.DateIsNullException;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
+
 import java.util.Calendar;
 import java.util.Date;
-import static hu.iit.
 
 public class Request {
 
@@ -22,7 +24,7 @@ public class Request {
     private Date deadline;
 
     private boolean returned;
-    
+
     private boolean active;
 
     public Request(int id, int bookId, int readerId, Date requestDate, boolean approve, int approvalLibrarianId, Date deadline, boolean returned, boolean active) {
@@ -37,19 +39,18 @@ public class Request {
         this.active = active;
     }
 
-    public Request( int requestId,int bookId, int readerId)
-    {
-        this.id = requestId; //CheckAlready
+    public Request(int requestId, int bookId, int readerId) {
+        this.id = requestId;
         this.bookId = bookId;
         this.readerId = readerId;
         this.requestDate = new Date();
-        this.approve= false;
+        this.approve = false;
         this.approvalLibrarianId = 0;
-            int noOfDays = 14; //Two Week
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(this.requestDate);
-            calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
-        this.deadline  = calendar.getTime();
+        int noOfDays = 14; //Two Week
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.requestDate);
+        calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+        this.deadline = calendar.getTime();
         this.returned = false;
         this.active = true;
     }
@@ -58,7 +59,9 @@ public class Request {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id) throws IdNotValidException {
+        if (id <= 0)
+            throw new IdNotValidException();
         this.id = id;
     }
 
@@ -66,7 +69,9 @@ public class Request {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(int bookId) throws IdNotValidException {
+        if (bookId <= 0)
+            throw new IdNotValidException();
         this.bookId = bookId;
     }
 
@@ -74,7 +79,9 @@ public class Request {
         return readerId;
     }
 
-    public void setReaderId(int readerId) {
+    public void setReaderId(int readerId) throws IdNotValidException {
+        if (readerId <= 0)
+            throw new IdNotValidException();
         this.readerId = readerId;
     }
 
@@ -82,7 +89,9 @@ public class Request {
         return requestDate;
     }
 
-    public void setRequestDate(Date requestDate) {
+    public void setRequestDate(Date requestDate) throws DateIsNullException {
+        if (requestDate == null)
+            throw new DateIsNullException();
         this.requestDate = requestDate;
     }
 
@@ -98,7 +107,9 @@ public class Request {
         return approvalLibrarianId;
     }
 
-    public void setApprovalLibrarianId(int approvalLibrarianId) {
+    public void setApprovalLibrarianId(int approvalLibrarianId) throws IdNotValidException {
+        if (approvalLibrarianId <= 0)
+            throw new IdNotValidException();
         this.approvalLibrarianId = approvalLibrarianId;
     }
 
@@ -106,7 +117,9 @@ public class Request {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(Date deadline) throws DateIsNullException {
+        if (deadline == null)
+            throw new DateIsNullException();
         this.deadline = deadline;
     }
 
@@ -146,9 +159,9 @@ public class Request {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return  id==request.id &&
-                bookId==request.bookId &&
-                readerId==request.readerId &&
+        return id == request.id &&
+                bookId == request.bookId &&
+                readerId == request.readerId &&
                 requestDate.equals(request.requestDate) &&
                 approve == request.approve &&
                 approvalLibrarianId == request.approvalLibrarianId &&

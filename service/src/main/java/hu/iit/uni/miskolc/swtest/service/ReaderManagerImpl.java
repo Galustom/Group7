@@ -3,6 +3,7 @@ package hu.iit.uni.miskolc.swtest.service;
 import hu.iit.uni.miskolc.swtest.dao.ReaderDao;
 import hu.iit.uni.miskolc.swtest.model.Book;
 import hu.iit.uni.miskolc.swtest.model.Reader;
+import hu.iit.uni.miskolc.swtest.model.Request;
 
 import java.util.Collection;
 
@@ -10,7 +11,7 @@ public class ReaderManagerImpl implements ReaderManager {
 
     ReaderDao readerDAO;
 
-    public ReaderManagerImpl(ReaderDao readerDAO){
+    public ReaderManagerImpl(ReaderDao readerDAO) {
         this.readerDAO = readerDAO;
     }
 
@@ -21,12 +22,12 @@ public class ReaderManagerImpl implements ReaderManager {
 
     @Override
     public Collection<Book> listAvailableBooks() {
-        return  readerDAO.listAvailableBooks();
+        return readerDAO.listAvailableBooks();
     }
 
     @Override
-    public void requestBook(Book book) {
-        readerDAO.requestBook(book);
+    public void requestBook(Request request, Book book, Reader reader) {
+        readerDAO.requestBook(request, book, reader);
     }
 
     @Override

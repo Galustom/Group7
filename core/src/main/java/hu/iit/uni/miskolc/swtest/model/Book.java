@@ -1,5 +1,7 @@
 package hu.iit.uni.miskolc.swtest.model;
 
+import hu.iit.uni.miskolc.swtest.model.exceptions.*;
+
 import java.util.Objects;
 
 public class Book {
@@ -56,6 +58,54 @@ public class Book {
         return available;
     }
 
+    public void setId(int id) throws IdNotValidException {
+        if (id <= 0)
+            throw new IdNotValidException();
+        this.id = id;
+    }
+
+    public void setName(String name) throws NameIsEmptyException {
+        if (name.equals(""))
+            throw new NameIsEmptyException();
+        this.name = name;
+    }
+
+    public void setGenre(String genre) throws GenreIsEmptyException {
+        if (genre.equals(""))
+            throw new GenreIsEmptyException();
+        this.genre = genre;
+    }
+
+    public void setAuthor(String author) throws AuthorIsEmptyException {
+        if (author.equals(""))
+            throw new AuthorIsEmptyException();
+        this.author = author;
+    }
+
+    public void setPublisher(String publisher) throws PublisherIsEmptyException {
+        if (publisher.equals(""))
+            throw new PublisherIsEmptyException();
+        this.publisher = publisher;
+    }
+
+    public void setIsbn(String isbn) throws IsbnIsEmptyException {
+        if (isbn.equals(""))
+            throw new IsbnIsEmptyException();
+        this.isbn = isbn;
+    }
+
+    public void setQuantity(int quantity) throws QuantityNotValidException {
+        if (quantity < 0)
+            throw new QuantityNotValidException();
+        this.quantity = quantity;
+    }
+
+    public void setAvailable(int available) throws AvailableNotValidException {
+        if (available < 0)
+            throw new AvailableNotValidException();
+        this.available = available;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -68,10 +118,6 @@ public class Book {
                 ", quantity=" + quantity +
                 ", available=" + available +
                 '}';
-    }
-
-    public Boolean validate(){
-        return getAvailable() >= 0 && getQuantity() >= 0;
     }
 
     @Override

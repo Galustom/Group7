@@ -13,6 +13,10 @@ public class Reader extends User {
         return borrowings;
     }
 
+    public void setBorrowings(ReaderBorrowings borrowings) {
+        this.borrowings = borrowings;
+    }
+
     @Override
     public String toString() {
         return "Reader{" +

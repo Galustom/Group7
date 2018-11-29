@@ -1,5 +1,7 @@
 package hu.iit.uni.miskolc.swtest.model;
 
+import hu.iit.uni.miskolc.swtest.model.exceptions.BorrowingsAreNullException;
+
 import java.util.Collection;
 
 public class ReaderBorrowings {
@@ -14,7 +16,9 @@ public class ReaderBorrowings {
         return borrowedBooks;
     }
 
-    public void setBorrowedBooks(Collection<Book> borrowedBooks) {
+    public void setBorrowedBooks(Collection<Book> borrowedBooks) throws BorrowingsAreNullException {
+        if (borrowedBooks == null)
+            throw new BorrowingsAreNullException();
         this.borrowedBooks = borrowedBooks;
     }
 
