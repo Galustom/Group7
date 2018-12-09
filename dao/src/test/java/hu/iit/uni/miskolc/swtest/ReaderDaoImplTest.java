@@ -23,25 +23,25 @@ public class ReaderDaoImplTest {
     public ExpectedException exceptionRule = ExpectedException.none();
 
     @Before
-    public void setUp() {
+    public void SetUp() {
         readerDao = new ReaderDaoImpl();
         bookDao = new BookDaoImpl();
     }
 
     @Test
-    public void listBooks() throws BookEntryAlreadyAddedException {
+    public void ListBooks() throws BookEntryAlreadyAddedException {
         Collection<Book> bookinmemory = new ArrayList<>();
 
-        Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book1);
         bookinmemory.add(book1);
-        Book book2 = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book2 = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book2);
         bookinmemory.add(book2);
-        Book book3 = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book3 = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book3);
         bookinmemory.add(book3);
-        Book book4 = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book4 = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book4);
         bookinmemory.add(book4);
 
@@ -50,17 +50,17 @@ public class ReaderDaoImplTest {
     }
 
     @Test
-    public void listAvailableBooks() throws BookEntryAlreadyAddedException {
+    public void ListAvailableBooks() throws BookEntryAlreadyAddedException {
         Collection<Book> bookinmemory = new ArrayList<>();
 
-        Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 0);
+        Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 0);
         bookDao.createBook(book1);
-        Book book2 = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book2 = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book2);
         bookinmemory.add(book2);
-        Book book3 = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 0);
+        Book book3 = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 0);
         bookDao.createBook(book3);
-        Book book4 = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book4 = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book4);
         bookinmemory.add(book4);
 
@@ -69,15 +69,15 @@ public class ReaderDaoImplTest {
     }
 
     @Test
-    public void requestBook() {
+    public void RequestBook() {
     }
 
     @Test
-    public void listBorrowings() {
+    public void ListBorrowings() {
     }
 
     @After
-    public void rollBack() {
+    public void RollBack() {
         File file = new File("StoredBooks.xml");
         file.delete();
     }
