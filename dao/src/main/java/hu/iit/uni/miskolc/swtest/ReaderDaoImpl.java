@@ -9,16 +9,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static hu.iit.uni.miskolc.swtest.BookDaoImpl.readAllBook;
+import static hu.iit.uni.miskolc.swtest.BookDaoImpl.ReadAllBook;
 import static hu.iit.uni.miskolc.swtest.RequestDaoImpl.ReadAllRequest;
 
-public class ReaderDaoImpl implements ReaderDao {
+public class ReaderDaoImpl  implements ReaderDao{
 
     @Override
     public Collection<Book> listBooks() {
         Collection<Book> books = readAllBook();
         return books;
     }
+
 
     @Override
     public Collection<Book> listAvailableBooks() {
