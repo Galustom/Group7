@@ -19,10 +19,12 @@ import java.util.List;
 public class LoginDaoImpl implements LoginDao {
     @Override
     public boolean searchUsername(String username) throws UsernameEntryNotFoundException {
-        List<String[]> StringUsers = ReadAllUser();
+        List<String[]> stringUsers = readAllUser();
 
-        for (int i=0; i<StringUsers.size(); i++){
-            if(StringUsers.get(i)[1].equals(username)){
+        for (int i=0; i<stringUsers.size(); i++)
+        {
+            if(stringUsers.get(i)[1].equals(username))
+            {
                 return true;
             }
         }
@@ -31,11 +33,14 @@ public class LoginDaoImpl implements LoginDao {
     }
 
     @Override
-    public boolean readPassword(String password) throws PasswordEntryNotFoundException {
-        List<String[]> StringUsers = ReadAllUser();
+    public boolean readPassword(String password) throws PasswordEntryNotFoundException
+    {
+        List<String[]> stringUsers = readAllUser();
 
-        for (int i=0; i<StringUsers.size(); i++){
-            if(StringUsers.get(i)[2].equals(password)){
+        for (int i=0; i<stringUsers.size(); i++)
+        {
+            if(stringUsers.get(i)[2].equals(password))
+            {
                 return true;
             }
         }
@@ -43,8 +48,9 @@ public class LoginDaoImpl implements LoginDao {
         throw new PasswordEntryNotFoundException();
     }
 
-    private static List<String[]> ReadAllUser(){
-        List<String[]> Users = new ArrayList<>();
+    private static List<String[]> readAllUser()
+    {
+        List<String[]> users = new ArrayList<>();
         Document dom;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
@@ -52,7 +58,8 @@ public class LoginDaoImpl implements LoginDao {
             dom = db.parse("StoredUsers.xml");
             NodeList nodeList = dom.getElementsByTagName("user");
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
+            for (int i = 0; i < nodeList.getLength(); i++)
+            {
                 Node node = nodeList.item(i);
                 Element element = (Element) node;
 
@@ -62,16 +69,19 @@ public class LoginDaoImpl implements LoginDao {
                 currentUser[1] = element.getElementsByTagName("username").item(0).getTextContent();
                 currentUser[2] = element.getElementsByTagName("password").item(0).getTextContent();
 
-                Users.add(currentUser);
+                users.add(currentUser);
             }
-        } catch (ParserConfigurationException pce) {
+        } catch (ParserConfigurationException pce)
+        {
             //Determine what to do here!
-        } catch (SAXException se) {
+        } catch (SAXException se)
+        {
             //Determine what to do here!
-        } catch (IOException ioe) {
+        } catch (IOException ioe)
+        {
             //Determine what to do here!
         }
 
-        return Users;
+        return users;
     }
 }
