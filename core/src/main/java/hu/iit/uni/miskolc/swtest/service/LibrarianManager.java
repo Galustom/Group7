@@ -18,7 +18,7 @@ public interface LibrarianManager {
 
     void addBookToLibrary(Book book) throws BookAlreadyAddedException;
 
-    void updateBook(Book book) throws BookDoesNotExistException;
+    void updateBook(Book book) throws BookDoesNotExistException, IdNotValidException;
 
     void deleteBook(Book book) throws BookDoesNotExistException;
 
