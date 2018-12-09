@@ -32,16 +32,16 @@ public class ReaderDaoImplTest {
     public void listBooks() throws BookEntryAlreadyAddedException {
         Collection<Book> bookinmemory = new ArrayList<>();
 
-        Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book1 = new Book(6461, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book1);
         bookinmemory.add(book1);
-        Book book2 = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book2 = new Book(6462, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book2);
         bookinmemory.add(book2);
-        Book book3 = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book3 = new Book(6463, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book3);
         bookinmemory.add(book3);
-        Book book4 = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book4 = new Book(6464, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book4);
         bookinmemory.add(book4);
 
@@ -53,14 +53,14 @@ public class ReaderDaoImplTest {
     public void listAvailableBooks() throws BookEntryAlreadyAddedException {
         Collection<Book> bookinmemory = new ArrayList<>();
 
-        Book book1 = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 0);
+        Book book1 = new Book(6461, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 0);
         bookDao.createBook(book1);
-        Book book2 = new Book(6462, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book2 = new Book(6462, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book2);
         bookinmemory.add(book2);
-        Book book3 = new Book(6463, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 0);
+        Book book3 = new Book(6463, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 0);
         bookDao.createBook(book3);
-        Book book4 = new Book(6464, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
+        Book book4 = new Book(6464, "PETI", "HORROR", "ZSOLTIKA", "ZSIGA", "ASDFGHJK10", 55, 10);
         bookDao.createBook(book4);
         bookinmemory.add(book4);
 
