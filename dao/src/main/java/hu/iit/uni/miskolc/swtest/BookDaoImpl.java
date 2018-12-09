@@ -28,7 +28,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void createBook(Book book) throws BookEntryAlreadyAddedException {
-        List<String[]> StringBooks = ReadAllBook();
+        List<String[]> StringBooks = readAllBook();
         List<Book> Books = new ArrayList<>();
         for (int i=0; i<StringBooks.size(); i++){
             Books.add(new Book(
@@ -65,7 +65,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Collection<Book> readBooks() {
-        List<String[]> StringBooks = ReadAllBook();
+        List<String[]> StringBooks = readAllBook();
         List<Book> Books = new ArrayList<>();
         for (int i=0; i<StringBooks.size(); i++){
             Books.add(new Book(
@@ -84,7 +84,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void updateBook(Book book) throws BookEntryNotFoundException {
-        List<String[]> StringBooks = ReadAllBook();
+        List<String[]> StringBooks = readAllBook();
         List<Book> Books = new ArrayList<>();
         for (int i=0; i<StringBooks.size(); i++){
             Books.add(new Book(
@@ -127,7 +127,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void deleteBook(Book book) throws BookEntryNotFoundException {
-        List<String[]> StringBooks = ReadAllBook();
+        List<String[]> StringBooks = readAllBook();
         List<Book> Books = new ArrayList<>();
         for (int i=0; i<StringBooks.size(); i++){
             Books.add(new Book(
@@ -152,7 +152,7 @@ public class BookDaoImpl implements BookDao {
         WriteAllBook(StringBooks);
     }
 
-    public static List<String[]> ReadAllBook() {
+    public static List<String[]> readAllBook() {
         List<String[]> Books = new ArrayList<>();
         Document dom;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

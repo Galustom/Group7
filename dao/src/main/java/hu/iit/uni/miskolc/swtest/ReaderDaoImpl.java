@@ -9,64 +9,38 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static hu.iit.uni.miskolc.swtest.BookDaoImpl.ReadAllBook;
+import static hu.iit.uni.miskolc.swtest.BookDaoImpl.readAllBook;
 import static hu.iit.uni.miskolc.swtest.RequestDaoImpl.ReadAllRequest;
 
 public class ReaderDaoImpl implements ReaderDao {
 
     @Override
-    public Collection<Book> ListBooks() {
-        List<String[]> stringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        for (int i=0; i<stringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(stringBooks.get(i)[0]),
-                    stringBooks.get(i)[1],
-                    stringBooks.get(i)[2],
-                    stringBooks.get(i)[3],
-                    stringBooks.get(i)[4],
-                    stringBooks.get(i)[5],
-                    Integer.parseInt(stringBooks.get(i)[6]),
-                    Integer.parseInt(stringBooks.get(i)[7])
-            ));
-        }
-        return Books;
+    public Collection<Book> listBooks() {
+        Collection<Book> books = readAllBook();
+        return books;
     }
 
     @Override
-    public Collection<Book> ListAvailableBooks() {
-        List<String[]> stringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        List<Book> AvailableBooks = new ArrayList<>();
-        for (int i=0; i<stringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(stringBooks.get(i)[0]),
-                    stringBooks.get(i)[1],
-                    stringBooks.get(i)[2],
-                    stringBooks.get(i)[3],
-                    stringBooks.get(i)[4],
-                    stringBooks.get(i)[5],
-                    Integer.parseInt(stringBooks.get(i)[6]),
-                    Integer.parseInt(stringBooks.get(i)[7])
-            ));
-        }
+    public Collection<Book> listAvailableBooks() {
+        Collection<Book> books = readAllBook();
+        Collection<Book> availableBooks = new ArrayList<>();
 
-        for (Book bookItem : Books) {
+        for (Book bookItem : books) {
             if (bookItem.getAvailable()>0)
-            {AvailableBooks.add(bookItem);}
+            {availableBooks.add(bookItem);}
         }
-        
-        return AvailableBooks;
+
+        return availableBooks;
     }
 
     @Override
-    public void RequestBook(Request request, Book book, Reader reader) {
+    public void requestBook(Request request, Book book, Reader reader) {
         //TODO IMPLEMENT THIS
         Request newRequest = new Request(request.getId(), book.getId(),reader.getId());
     }
 
     @Override
-    public Collection<Book> ListBorrowings(Reader reader) {
+    public Collection<Book> listBorrowings(Reader reader) {
         return reader.getBorrowings().getBorrowedBooks();
     }
 }
