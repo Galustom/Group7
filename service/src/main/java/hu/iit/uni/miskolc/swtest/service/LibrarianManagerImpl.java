@@ -47,7 +47,7 @@ public class LibrarianManagerImpl implements LibrarianManager {
     }
 
     @Override
-    public void updateBook(Book book) throws BookDoesNotExistException {
+    public void updateBook(Book book) throws BookDoesNotExistException, IdNotValidException {
         try {
             librarianManagerDAO.updateBook(book);
         } catch (BookEntryNotFoundException e) {

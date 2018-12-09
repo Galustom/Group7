@@ -3,6 +3,7 @@ package hu.iit.uni.miskolc.swtest;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 
@@ -56,7 +57,7 @@ public class BookDaoImplTest {
     }
 
     @Test
-    public void testUpdateBook() throws BookEntryAlreadyAddedException, BookEntryNotFoundException {
+    public void testUpdateBook() throws BookEntryAlreadyAddedException, BookEntryNotFoundException ,IdNotValidException {
         Book book = new Book(6461, "JANI", "HORROR", "PETIKE", "ZSIGA", "XDXDXDXD69", 55, 10);
         bookDao.createBook(book);
 

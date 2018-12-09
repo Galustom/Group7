@@ -9,54 +9,28 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static hu.iit.uni.miskolc.swtest.BookDaoImpl.ReadAllBook;
+import static hu.iit.uni.miskolc.swtest.BookDaoImpl.readAllBook;
 import static hu.iit.uni.miskolc.swtest.RequestDaoImpl.ReadAllRequest;
 
 public class ReaderDaoImpl implements ReaderDao {
 
     @Override
     public Collection<Book> listBooks() {
-        List<String[]> StringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        for (int i=0; i<StringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(StringBooks.get(i)[0]),
-                    StringBooks.get(i)[1],
-                    StringBooks.get(i)[2],
-                    StringBooks.get(i)[3],
-                    StringBooks.get(i)[4],
-                    StringBooks.get(i)[5],
-                    Integer.parseInt(StringBooks.get(i)[6]),
-                    Integer.parseInt(StringBooks.get(i)[7])
-            ));
-        }
-        return Books;
+        Collection<Book> books = readAllBook();
+        return books;
     }
 
     @Override
     public Collection<Book> listAvailableBooks() {
-        List<String[]> StringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        List<Book> AvailableBooks = new ArrayList<>();
-        for (int i=0; i<StringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(StringBooks.get(i)[0]),
-                    StringBooks.get(i)[1],
-                    StringBooks.get(i)[2],
-                    StringBooks.get(i)[3],
-                    StringBooks.get(i)[4],
-                    StringBooks.get(i)[5],
-                    Integer.parseInt(StringBooks.get(i)[6]),
-                    Integer.parseInt(StringBooks.get(i)[7])
-            ));
-        }
+        Collection<Book> books = readAllBook();
+        Collection<Book> availableBooks = new ArrayList<>();
 
-        for (Book bookItem : Books) {
+        for (Book bookItem : books) {
             if (bookItem.getAvailable()>0)
-            {AvailableBooks.add(bookItem);}
+            {availableBooks.add(bookItem);}
         }
         
-        return AvailableBooks;
+        return availableBooks;
     }
 
     @Override

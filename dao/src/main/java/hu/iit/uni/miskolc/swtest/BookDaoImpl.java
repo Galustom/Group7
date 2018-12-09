@@ -4,6 +4,7 @@ import hu.iit.uni.miskolc.swtest.dao.BookDao;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryAlreadyAddedException;
 import hu.iit.uni.miskolc.swtest.dao.exceptions.BookEntryNotFoundException;
 import hu.iit.uni.miskolc.swtest.model.Book;
+import hu.iit.uni.miskolc.swtest.model.exceptions.IdNotValidException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,132 +29,67 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void createBook(Book book) throws BookEntryAlreadyAddedException {
-        List<String[]> StringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        for (int i=0; i<StringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(StringBooks.get(i)[0]),
-                    StringBooks.get(i)[1],
-                    StringBooks.get(i)[2],
-                    StringBooks.get(i)[3],
-                    StringBooks.get(i)[4],
-                    StringBooks.get(i)[5],
-                    Integer.parseInt(StringBooks.get(i)[6]),
-                    Integer.parseInt(StringBooks.get(i)[7])
-            ));
-        }
+        Collection<Book> books = readAllBook();
+        List<String> bookIsbns = new ArrayList<>();
 
-        for(int i = 0; i < Books.size(); i++){
-            if(Books.get(i).getId()==book.getId()){
-                throw new BookEntryAlreadyAddedException();
-            }
+        for (Book currentBook : books) {
+            bookIsbns.add(currentBook.getIsbn());
         }
+        if (bookIsbns.contains(book.getIsbn())) {
+            throw new BookEntryAlreadyAddedException();
+        }
+        books.add(book);
 
-        Books.add(book);
-        StringBooks.add(new String[]{
-                Integer.toString(book.getId()),
-                book.getName(),
-                book.getGenre(),
-                book.getAuthor(),
-                book.getPublisher(),
-                book.getIsbn(),
-                Integer.toString(book.getQuantity()),
-                Integer.toString(book.getAvailable())
-        });
-        WriteAllBook(StringBooks);
+        writeAllBook(books);
     }
 
     @Override
     public Collection<Book> readBooks() {
-        List<String[]> StringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        for (int i=0; i<StringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(StringBooks.get(i)[0]),
-                    StringBooks.get(i)[1],
-                    StringBooks.get(i)[2],
-                    StringBooks.get(i)[3],
-                    StringBooks.get(i)[4],
-                    StringBooks.get(i)[5],
-                    Integer.parseInt(StringBooks.get(i)[6]),
-                    Integer.parseInt(StringBooks.get(i)[7])
-            ));
-        }
-        return Books;
+        Collection<Book> books =  readAllBook();
+
+        return books;
     }
 
     @Override
-    public void updateBook(Book book) throws BookEntryNotFoundException {
-        List<String[]> StringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        for (int i=0; i<StringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(StringBooks.get(i)[0]),
-                    StringBooks.get(i)[1],
-                    StringBooks.get(i)[2],
-                    StringBooks.get(i)[3],
-                    StringBooks.get(i)[4],
-                    StringBooks.get(i)[5],
-                    Integer.parseInt(StringBooks.get(i)[6]),
-                    Integer.parseInt(StringBooks.get(i)[7])
-            ));
-        }
+    public void updateBook(Book book) throws BookEntryNotFoundException, IdNotValidException {
+        Collection<Book> books = readAllBook();
 
-        boolean gotIt = false;
-        int indexOfInput = 0;
-        for(int i = 0; i < Books.size(); i++){
-            if(Books.get(i).getId()==book.getId()){
-                gotIt = true;
-                indexOfInput = i;
-            }
-        }
+        Book currentBook = books.stream().filter((Book)->book.getIsbn()==book.getIsbn()).findFirst().orElse(null);
+        if (currentBook!=null)
+        {
+            book.setId(currentBook.getId());
+            books.remove(currentBook);
+            books.add(book);
 
-        if(!gotIt){
-            throw new BookEntryNotFoundException();
+            writeAllBook(books);
         }
         else{
-            StringBooks.get(indexOfInput)[0]=Integer.toString(book.getId());
-            StringBooks.get(indexOfInput)[1]=book.getName();
-            StringBooks.get(indexOfInput)[2]=book.getGenre();
-            StringBooks.get(indexOfInput)[3]=book.getAuthor();
-            StringBooks.get(indexOfInput)[4]=book.getPublisher();
-            StringBooks.get(indexOfInput)[5]=book.getIsbn();
-            StringBooks.get(indexOfInput)[6]=Integer.toString(book.getQuantity());
-            StringBooks.get(indexOfInput)[7]=Integer.toString(book.getAvailable());
-
-            WriteAllBook(StringBooks);
+            throw new BookEntryNotFoundException();
         }
     }
 
     @Override
     public void deleteBook(Book book) throws BookEntryNotFoundException {
-        List<String[]> StringBooks = ReadAllBook();
-        List<Book> Books = new ArrayList<>();
-        for (int i=0; i<StringBooks.size(); i++){
-            Books.add(new Book(
-                    Integer.parseInt(StringBooks.get(i)[0]),
-                    StringBooks.get(i)[1],
-                    StringBooks.get(i)[2],
-                    StringBooks.get(i)[3],
-                    StringBooks.get(i)[4],
-                    StringBooks.get(i)[5],
-                    Integer.parseInt(StringBooks.get(i)[6]),
-                    Integer.parseInt(StringBooks.get(i)[7])
-            ));
-        }
+        Collection<Book> books = new ArrayList<>();
 
-        if(!Books.contains(book)){
+        if(!books.contains(book)){
             throw new BookEntryNotFoundException();
         }
         else {
-            StringBooks.remove(Books.indexOf(book));
+            books.remove(book);
         }
-
-        WriteAllBook(StringBooks);
+        writeAllBook(books);
     }
 
-    public static List<String[]> ReadAllBook() {
-        List<String[]> Books = new ArrayList<>();
+    /**
+     * Return with a Collection of books
+     * @return Return with a Collection of books
+     */
+    public static Collection<Book> readAllBook() {
+        List<String[]> stringBooks = new ArrayList<>();
+        //Start of Current
+        List<Book> books = new ArrayList<>();
+        //End of Current
         Document dom;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
@@ -165,9 +101,7 @@ public class BookDaoImpl implements BookDao {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 Element element = (Element) node;
-
                 String[] currentBook = new String[8];
-
                 currentBook[0] = element.getElementsByTagName("id").item(0).getTextContent();
                 currentBook[1] = element.getElementsByTagName("name").item(0).getTextContent();
                 currentBook[2] = element.getElementsByTagName("genre").item(0).getTextContent();
@@ -177,8 +111,22 @@ public class BookDaoImpl implements BookDao {
                 currentBook[6] = element.getElementsByTagName("quantity").item(0).getTextContent();
                 currentBook[7] = element.getElementsByTagName("available").item(0).getTextContent();
 
-                Books.add(currentBook);
+                stringBooks.add(currentBook);
             }
+            // Start of Current modification
+            for (int i=0; i<stringBooks.size(); i++){
+                books.add(new Book(
+                        Integer.parseInt(stringBooks.get(i)[0]),
+                        stringBooks.get(i)[1],
+                        stringBooks.get(i)[2],
+                        stringBooks.get(i)[3],
+                        stringBooks.get(i)[4],
+                        stringBooks.get(i)[5],
+                        Integer.parseInt(stringBooks.get(i)[6]),
+                        Integer.parseInt(stringBooks.get(i)[7])
+                ));
+            }
+            //End of Current modification
         } catch (ParserConfigurationException pce) {
             //Determine what to do here!
         } catch (SAXException se) {
@@ -187,10 +135,14 @@ public class BookDaoImpl implements BookDao {
             //Determine what to do here!
         }
 
-        return Books;
+        return books;
     }
 
-    private static void WriteAllBook(List<String[]> Books) {
+    /**
+     * Write the whole XML with the new Books
+     * @param books
+     */
+    private static void writeAllBook(Collection<Book> books) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         Document dom;
         try {
@@ -198,32 +150,23 @@ public class BookDaoImpl implements BookDao {
             dom = db.newDocument();
             Element rooroot = dom.createElement("books");
 
-            for (int i = 0; i < Books.size(); i++) {
+            for (Book book: books) {
                 Element rootEle = dom.createElement("book");
                 Element e = null;
                 e = dom.createElement("id");
-                e.appendChild(dom.createTextNode(Books.get(i)[0]));
-                rootEle.appendChild(e);
+                e.appendChild(dom.createTextNode(""+book.getId()));
                 e = dom.createElement("name");
-                e.appendChild(dom.createTextNode(Books.get(i)[1]));
-                rootEle.appendChild(e);
-                e = dom.createElement("genre");
-                e.appendChild(dom.createTextNode(Books.get(i)[2]));
-                rootEle.appendChild(e);
+                e.appendChild(dom.createTextNode(book.getGenre()));
                 e = dom.createElement("author");
-                e.appendChild(dom.createTextNode(Books.get(i)[3]));
-                rootEle.appendChild(e);
+                e.appendChild(dom.createTextNode(book.getAuthor()));
                 e = dom.createElement("publisher");
-                e.appendChild(dom.createTextNode(Books.get(i)[4]));
-                rootEle.appendChild(e);
+                e.appendChild(dom.createTextNode(book.getPublisher()));
                 e = dom.createElement("isbn");
-                e.appendChild(dom.createTextNode(Books.get(i)[5]));
-                rootEle.appendChild(e);
+                e.appendChild(dom.createTextNode(book.getIsbn()));
                 e = dom.createElement("quantity");
-                e.appendChild(dom.createTextNode(Books.get(i)[6]));
-                rootEle.appendChild(e);
+                e.appendChild(dom.createTextNode(""+book.getQuantity()));
                 e = dom.createElement("available");
-                e.appendChild(dom.createTextNode(Books.get(i)[7]));
+                e.appendChild(dom.createTextNode(""+book.getAvailable()));
                 rootEle.appendChild(e);
                 rooroot.appendChild(rootEle);
             }
@@ -245,5 +188,8 @@ public class BookDaoImpl implements BookDao {
         } catch (ParserConfigurationException pce) {
             //Determine what to do here!
         }
+
     }
+
+
 }
